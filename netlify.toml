@@ -9,5 +9,5 @@
   publish = "build"
 
 [build.environment]
-  # Specify Node version
-  NODE_VERSION = "18"
+  # Specify Node version 20 (required by react-router-dom@7.9.5)
+  NODE_VERSION = "20"
