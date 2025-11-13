@@ -1,0 +1,13 @@
+[build]
+  # The base directory should be the root where package.json lives
+  base = "."
+  
+  # The build command
+  command = "npm run build"
+  
+  # The publish directory should point to where the build output goes
+  publish = "build"
+
+[build.environment]
+  # Specify Node version
+  NODE_VERSION = "18"
