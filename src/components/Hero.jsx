@@ -5,13 +5,13 @@ import { heroTestimonials } from '../data/mock';
 
 // Horizontally scrolling brand logo marquee
 const brandLogos = [
-  { src: '/images/brands/revolut.png', alt: 'Revolut' },
-  { src: '/images/brands/yves-rocher.png', alt: 'Yves Rocher' },
-  { src: '/images/brands/samsung.png', alt: 'Samsung' },
-  { src: '/images/brands/logitech.png', alt: 'Logitech' },
-  { src: '/images/brands/htx.png', alt: 'HTX' },
-  { src: '/images/brands/ironfx.png', alt: 'IronFX' },
-  // Add more brand logos as needed
+  { src: 'https://www.revolut.com/favicon.ico', alt: 'Revolut' },
+  { src: 'https://www.yves-rocher.com/favicon.ico', alt: 'Yves Rocher' },
+  { src: 'https://www.samsung.com/favicon.ico', alt: 'Samsung' },
+  { src: 'https://www.logitech.com/favicon.ico', alt: 'Logitech' },
+  { src: 'https://www.htx.com/favicon.ico', alt: 'HTX' },
+  { src: 'https://www.ironfx.com/favicon.ico', alt: 'IronFX' },
+  // Add more brand favicons as needed
 ];
 
 function BrandLogoMarquee() {
@@ -92,7 +92,7 @@ const Hero = () => {
       
       <div className="max-w-7xl mx-auto relative z-10 px-6">
         {/* Centered Hero Content */}
-        <div className="max-w-4xl mx-auto text-center space-y-10">
+        <div className="max-w-4xl mx-auto text-center space-y-10 mt-12">
           <h1 className="font-bold text-black leading-[1.05] tracking-tight text-5xl md:text-6xl lg:text-7xl">
             All your <span className="relative inline-block"><span className="bg-gradient-to-r from-[#FFD000] to-[#FFEA00] bg-clip-text text-transparent">marketing</span></span><br />needs in one single<br />monthly subscription
           </h1>
