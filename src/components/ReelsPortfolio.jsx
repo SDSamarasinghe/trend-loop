@@ -64,46 +64,139 @@ const ReelsPortfolio = () => {
           ))}
         </div>
 
-        {/* Reels Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[240px] md:auto-rows-[260px]">
-          {reelsPortfolio
-            .filter(reel => selectedCategory === 'All Cases' || reel.category === selectedCategory)
-            .map((reel, idx) => {
-              const theme = themeStyles[reel.theme] || themeStyles.blue;
-              const isTall = reel.size === 'tall';
-              const heightClasses = isTall ? 'row-span-2' : 'row-span-1';
-              return (
-                <div
-                  key={reel.id}
-                  className={`group relative rounded-3xl overflow-hidden bg-gray-100 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex ${heightClasses}`}
-                >
-                  <div className="relative w-full h-full">
-                  <img
-                    src={reel.image}
-                    alt={reel.titleBottom}
-                    className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-b ${theme.overlay} opacity-90 mix-blend-multiply pointer-events-none`}></div>
-                  <div className="absolute inset-0 flex flex-col justify-between p-4">
-                    <div className="text-left mt-1">
-                      <h3 className="font-extrabold text-white text-2xl leading-tight drop-shadow-sm">
-                        <span className={`${theme.accent}`}>{reel.titleTop}</span><br />
-                        <span>{reel.titleBottom}</span>
-                      </h3>
+        {/* Reels Grid - Masonry Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+          {/* Column 1 */}
+          <div className="flex flex-col gap-5">
+            {reelsPortfolio
+              .filter(reel => selectedCategory === 'All Cases' || reel.category === selectedCategory)
+              .filter((_, idx) => idx % 3 === 0)
+              .map((reel) => {
+                const theme = themeStyles[reel.theme] || themeStyles.blue;
+                const isTall = reel.size === 'tall';
+                const heightClass = isTall ? 'h-[550px]' : 'h-[370px]';
+                
+                return (
+                  <div
+                    key={reel.id}
+                    className={`group relative rounded-3xl overflow-hidden bg-gray-100 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 ${heightClass}`}
+                  >
+                    <div className="relative w-full h-full">
+                    <img
+                      src={reel.image}
+                      alt={reel.titleBottom}
+                      className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.05] transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-b ${theme.overlay} opacity-90 mix-blend-multiply pointer-events-none`}></div>
+                    <div className="absolute inset-0 flex flex-col justify-between p-5">
+                      <div className="text-left mt-2">
+                        <h3 className="font-extrabold text-white text-2xl md:text-3xl leading-tight drop-shadow-lg">
+                          <span className={`${theme.accent}`}>{reel.titleTop}</span><br />
+                          <span>{reel.titleBottom}</span>
+                        </h3>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <button className="flex items-center gap-2 bg-white/95 backdrop-blur px-5 py-2.5 rounded-full text-sm font-semibold text-black shadow-md hover:shadow-lg hover:bg-white transition">
+                          <Play className="w-4 h-4" />
+                          Watch
+                        </button>
+                        <span className="text-white/80 text-xs font-medium bg-black/20 px-3 py-1 rounded-full">Reel #{reel.id}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <button className="flex items-center gap-2 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-sm font-semibold text-black shadow-sm hover:shadow-md transition">
-                        <Play className="w-4 h-4" />
-                        Watch
-                      </button>
-                      <span className="text-white/70 text-xs font-medium">Reel #{reel.id}</span>
                     </div>
                   </div>
+                );
+              })}
+          </div>
+
+          {/* Column 2 */}
+          <div className="flex flex-col gap-5">
+            {reelsPortfolio
+              .filter(reel => selectedCategory === 'All Cases' || reel.category === selectedCategory)
+              .filter((_, idx) => idx % 3 === 1)
+              .map((reel) => {
+                const theme = themeStyles[reel.theme] || themeStyles.blue;
+                const isTall = reel.size === 'tall';
+                const heightClass = isTall ? 'h-[550px]' : 'h-[370px]';
+                
+                return (
+                  <div
+                    key={reel.id}
+                    className={`group relative rounded-3xl overflow-hidden bg-gray-100 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 ${heightClass}`}
+                  >
+                    <div className="relative w-full h-full">
+                    <img
+                      src={reel.image}
+                      alt={reel.titleBottom}
+                      className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.05] transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-b ${theme.overlay} opacity-90 mix-blend-multiply pointer-events-none`}></div>
+                    <div className="absolute inset-0 flex flex-col justify-between p-5">
+                      <div className="text-left mt-2">
+                        <h3 className="font-extrabold text-white text-2xl md:text-3xl leading-tight drop-shadow-lg">
+                          <span className={`${theme.accent}`}>{reel.titleTop}</span><br />
+                          <span>{reel.titleBottom}</span>
+                        </h3>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <button className="flex items-center gap-2 bg-white/95 backdrop-blur px-5 py-2.5 rounded-full text-sm font-semibold text-black shadow-md hover:shadow-lg hover:bg-white transition">
+                          <Play className="w-4 h-4" />
+                          Watch
+                        </button>
+                        <span className="text-white/80 text-xs font-medium bg-black/20 px-3 py-1 rounded-full">Reel #{reel.id}</span>
+                      </div>
+                    </div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
+
+          {/* Column 3 */}
+          <div className="flex flex-col gap-5">
+            {reelsPortfolio
+              .filter(reel => selectedCategory === 'All Cases' || reel.category === selectedCategory)
+              .filter((_, idx) => idx % 3 === 2)
+              .map((reel) => {
+                const theme = themeStyles[reel.theme] || themeStyles.blue;
+                const isTall = reel.size === 'tall';
+                const heightClass = isTall ? 'h-[550px]' : 'h-[370px]';
+                
+                return (
+                  <div
+                    key={reel.id}
+                    className={`group relative rounded-3xl overflow-hidden bg-gray-100 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 ${heightClass}`}
+                  >
+                    <div className="relative w-full h-full">
+                    <img
+                      src={reel.image}
+                      alt={reel.titleBottom}
+                      className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.05] transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-b ${theme.overlay} opacity-90 mix-blend-multiply pointer-events-none`}></div>
+                    <div className="absolute inset-0 flex flex-col justify-between p-5">
+                      <div className="text-left mt-2">
+                        <h3 className="font-extrabold text-white text-2xl md:text-3xl leading-tight drop-shadow-lg">
+                          <span className={`${theme.accent}`}>{reel.titleTop}</span><br />
+                          <span>{reel.titleBottom}</span>
+                        </h3>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <button className="flex items-center gap-2 bg-white/95 backdrop-blur px-5 py-2.5 rounded-full text-sm font-semibold text-black shadow-md hover:shadow-lg hover:bg-white transition">
+                          <Play className="w-4 h-4" />
+                          Watch
+                        </button>
+                        <span className="text-white/80 text-xs font-medium bg-black/20 px-3 py-1 rounded-full">Reel #{reel.id}</span>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
 
         <div className="mt-14 flex justify-center">
