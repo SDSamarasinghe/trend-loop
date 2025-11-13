@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 24 100% 35%;
+        --card: 0 0% 100%;
+        --card-foreground: 24 100% 35%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 24 100% 35%;
+        --primary: 24 100% 50%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 24 100% 95%;
+        --secondary-foreground: 24 100% 35%;
+        --muted: 24 100% 95%;
+        --muted-foreground: 24 50% 50%;
+        --accent: 24 100% 95%;
+        --accent-foreground: 24 100% 35%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 24 50% 85%;
+        --input: 24 50% 85%;
+        --ring: 24 100% 50%;
+        --radius: 0.5rem;
+        --chart-1: 24 100% 50%;
+        --chart-2: 24 100% 60%;
+        --chart-3: 24 100% 70%;
+        --chart-4: 24 100% 80%;
+        --chart-5: 24 100% 90%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-white text-gray-900 font-sans;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-gray-900;
+    }
+    p {
+        @apply text-gray-600;
+    }
+}
+
+@layer utilities {
+    .text-gradient-orange {
+        @apply bg-gradient-to-r from-[#FF7B00] to-[#FF9500] bg-clip-text text-transparent;
+    }
+    .bg-gradient-orange {
+        @apply bg-gradient-to-r from-[#FF7B00] to-[#FF9500];
+    }
+    .border-gradient-orange {
+        border-image: linear-gradient(135deg, #FF7B00 0%, #FF9500 100%) 1;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
