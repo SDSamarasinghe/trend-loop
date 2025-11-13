@@ -86,7 +86,7 @@ export const features = [
   {
     id: 2,
     icon: 'Settings',
-    category: 'Services',
+    category: 'FAQ',
     title: 'The Problems We Helped Our Clients Overcome',
     description: 'Create multi-step email sequences that send automatically based on subscriber actions and behaviors.',
     cta: 'More about automations',
@@ -95,8 +95,8 @@ export const features = [
   {
     id: 3,
     icon: 'Zap',
-    category: 'Transactional',
-    title: 'Send transactional emails',
+    category: 'Team',
+    title: 'Meet the Experts Behind Your Success',
     description: 'Deliver order confirmations, password resets, and other triggered emails reliably and at scale.',
     cta: 'More about transactional',
     illustration: 'transactional'
