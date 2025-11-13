@@ -146,29 +146,71 @@ const AutomationIllustrationWithFAQs = () => (
   </div>
 );
 
-const TransactionalIllustration = () => (
-  <div className="relative w-full aspect-square max-w-md mx-auto">
-  <div className="absolute inset-0 bg-gradient-to-br from-[#FFF2B0] to-[#FFFBEA] rounded-full opacity-50"></div>
-    {/* Lightning bolt effect */}
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-  <Zap className="w-32 h-32 text-[#FFD000] animate-pulse" />
-    </div>
-    {/* Email cards */}
-    {[-60, 0, 60].map((offset, i) => (
-      <div
-        key={i}
-        className="absolute top-1/2 left-1/2 bg-white rounded-lg shadow-lg p-4 min-w-[160px] transform transition-transform hover:scale-105"
-        style={{
-          transform: `translate(-50%, calc(-50% + ${offset}px))`,
-          zIndex: 3 - Math.abs(offset / 20)
-        }}
-      >
-        <div className="h-2 bg-[#FFF5EB] rounded mb-2"></div>
-        <div className="h-2 bg-[#FFF5EB] rounded w-3/4 mb-2"></div>
-        <div className="h-2 bg-[#FFF5EB] rounded w-1/2"></div>
+const TransactionalIllustration = () => {
+  // Team member avatars - reduced to 6 for better spacing
+  const teamMembers = [
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=Mike',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=Emma',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=David',
+    'https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa'
+  ];
+
+  return (
+    <div className="relative w-full aspect-square max-w-lg mx-auto">
+      {/* Large yellow circle background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FFF9E6] via-[#FFF5CC] to-[#FFEB99] rounded-full opacity-80"></div>
+      
+      {/* Email cards - positioned slightly left */}
+      <div className="absolute top-1/2 left-[35%] transform -translate-x-1/2 -translate-y-1/2 space-y-4">
+        {[0, 1].map((i) => (
+          <div
+            key={i}
+            className="bg-white rounded-2xl shadow-xl p-5 w-[220px] transform transition-all hover:scale-105"
+            style={{
+              animation: `float ${3 + i * 0.5}s ease-in-out infinite`,
+              animationDelay: `${i * 0.3}s`
+            }}
+          >
+            <div className="h-3 bg-gray-200 rounded mb-3 w-full"></div>
+            <div className="h-3 bg-gray-200 rounded mb-3 w-4/5"></div>
+            <div className="h-3 bg-gray-200 rounded w-3/5"></div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-);
+
+      {/* Team avatars arranged vertically on the right side - no overlap */}
+      <div className="absolute top-1/2 right-[12%] transform -translate-y-1/2">
+        <div className="flex flex-col space-y-3">
+          {teamMembers.map((avatar, index) => (
+            <div
+              key={index}
+              className="w-16 h-16 rounded-full border-4 border-white shadow-xl overflow-hidden bg-white transform transition-all hover:scale-110 hover:shadow-2xl"
+            >
+              <img
+                src={avatar}
+                alt={`Team member ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Add floating animation keyframes */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 export default Features;
