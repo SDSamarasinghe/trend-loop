@@ -39,9 +39,8 @@ const ReelsPortfolio = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14 space-y-6">
           <h2 className="font-bold leading-[1.05] tracking-tight text-4xl md:text-5xl">
-            <span className="text-black">Recent </span>
-            <span className="bg-gradient-to-r from-[#FFD000] to-[#FFEA00] bg-clip-text text-transparent">Reels & Short-form</span>
-            <span className="text-black"> Portfolio</span>
+            <span className="text-black">Our Works</span>
+            
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             A snapshot of vertical content crafted to capture attention fast and reinforce brand authority across social platforms.
