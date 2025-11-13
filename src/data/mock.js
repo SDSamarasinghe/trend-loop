@@ -169,48 +169,48 @@ export const reelsPortfolio = [
   {
     id: 1,
     image: '/images/budget-in-barry.jpeg',
-    titleTop: '$700K',
-    titleBottom: 'Budget in Barrie',
+    // titleTop: '$700K',
+    // titleBottom: 'Budget in Barrie',
     theme: 'blue',
     size: 'tall'
   },
   {
     id: 2,
     image: '/images/home-buyer-programms.jpeg',
-    titleTop: 'Losing',
-    titleBottom: 'Homes After Pre-approval',
+    // titleTop: 'Losing',
+    // titleBottom: 'Homes After Pre-approval',
     theme: 'red',
     size: 'short'
   },
   {
     id: 3,
     image: '/images/invest-real-state.jpeg',
-    titleTop: 'Funniest',
-    titleBottom: 'Questions Asked',
+    // titleTop: 'Funniest',
+    // titleBottom: 'Questions Asked',
     theme: 'orange',
     size: 'tall'
   },
   {
     id: 4,
     image: '/images/realtor-journey.jpeg',
-    titleTop: 'Realtor',
-    titleBottom: 'Journey',
+    // titleTop: 'Realtor',
+    // titleBottom: 'Journey',
     theme: 'red',
     size: 'short'
   },
   {
     id: 5,
     image: '/images/dream-home.jpeg',
-    titleTop: 'Finding Your',
-    titleBottom: 'Dream Home',
+    // titleTop: 'Finding Your',
+    // titleBottom: 'Dream Home',
     theme: 'teal',
     size: 'tall'
   },
   {
     id: 6,
     image: '/images/North-bay.jpeg',
-    titleTop: 'Looking To',
-    titleBottom: 'Invest North Bay',
+    // titleTop: 'Looking To',
+    // titleBottom: 'Invest North Bay',
     theme: 'green',
     size: 'short'
   }
