@@ -2,8 +2,8 @@
   # The base directory should be the root where package.json lives
   base = "."
   
-  # The build command
-  command = "npm run build"
+  # The build command with legacy peer deps flag to handle peer dependency warnings
+  command = "npm install --legacy-peer-deps && npm run build"
   
   # The publish directory should point to where the build output goes
   publish = "build"
