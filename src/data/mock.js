@@ -94,6 +94,15 @@ export const features = [
   },
   {
     id: 3,
+    icon: 'Settings',
+    category: 'FAQ',
+    title: 'The Problems We Helped Our Clients Overcome',
+    description: 'Create multi-step email sequences that send automatically based on subscriber actions and behaviors.',
+    cta: 'More about automations',
+    illustration: 'automation'
+  },
+  {
+    id: 4,
     icon: 'Zap',
     category: 'Team',
     title: 'Meet the Experts Behind Your Success',
@@ -213,5 +222,25 @@ export const reelsPortfolio = [
     // titleBottom: 'Invest North Bay',
     theme: 'green',
     size: 'short'
+  }
+];
+
+// Our Services dataset (centralized for reuse)
+export const ourServices = [
+  {
+    title: 'Video Production',
+    description: 'High-quality video content for brand awareness and engagement.'
+  },
+  {
+    title: 'Email Campaigns',
+    description: 'Strategic email marketing to nurture leads and drive conversions.'
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Grow and engage your audience across all major platforms.'
+  },
+  {
+    title: 'Content Strategy',
+    description: 'Data-driven content planning for measurable results.'
   }
 ];
