@@ -26,7 +26,7 @@ const Features = () => {
               {/* Text Content */}
               <div className={`space-y-6 ${isReversed ? 'lg:col-start-2' : ''}`}>
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-[#FFD000] rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-[#FF9933] rounded-lg flex items-center justify-center">
                     <Icon className="w-5 h-5 text-black" />
                   </div>
                   <span className="text-black font-semibold text-lg">{feature.category}</span>
@@ -38,7 +38,7 @@ const Features = () => {
 
                 {feature.badge && (
                   <div className="flex items-center space-x-3">
-                    <span className="inline-block px-3 py-1 bg-[#FFF2B0] text-black text-sm font-semibold rounded-full border border-[#FFD000]/60">
+                    <span className="inline-block px-3 py-1 bg-[#FFF2B0] text-black text-sm font-semibold rounded-full border border-[#FF9933]/60">
                       {feature.badge}
                     </span>
                     <span className="text-[#CCAA00] font-medium">{feature.badgeText}</span>
@@ -49,9 +49,9 @@ const Features = () => {
                   {feature.description}
                 </p>
 
-                <button className="group inline-flex items-center space-x-2 px-6 py-3 border-2 border-[#FFD000] bg-[#FFD000] text-black rounded-full font-semibold hover:bg-[#FFEA00] hover:text-black transition-all">
+                <button className="group inline-flex items-center space-x-2 px-6 py-3 border-2 border-[#FF9933] bg-[#FF9933] text-white rounded-full font-semibold hover:bg-[#E68A2E] hover:border-[#E68A2E] transition-all">
                   <span>{feature.cta}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-black" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-white" />
                 </button>
               </div>
 
@@ -94,13 +94,13 @@ const GrowthIllustration = () => (
           transform: `translate(-50%, -50%) rotate(${angle}deg) translate(0, -140px)`
         }}
       >
-  <Inbox className="w-6 h-6 text-[#FFD000]" />
+  <Inbox className="w-6 h-6 text-[#FF9933]" />
       </div>
     ))}
     {/* Center card */}
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-xl p-6 min-w-[200px]">
       <p className="text-sm text-gray-600 mb-1">Audience Growth</p>
-  <p className="text-4xl font-bold text-[#FFD000]">80 (+23%)</p>
+  <p className="text-4xl font-bold text-[#FF9933]">80 (+23%)</p>
       <p className="text-xs text-gray-600 mt-1">Last 30 days</p>
     </div>
   </div>
@@ -112,7 +112,7 @@ const AutomationIllustration = () => (
     {/* Flow diagram */}
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 space-y-8">
       <div className="bg-white rounded-lg shadow-lg p-4 text-center min-w-[180px]">
-  <Inbox className="w-8 h-8 text-[#FFD000] mx-auto mb-2" />
+  <Inbox className="w-8 h-8 text-[#FF9933] mx-auto mb-2" />
         <p className="text-sm font-semibold text-black">EMAIL WAS OPENED?</p>
       </div>
       <div className="flex space-x-4">
