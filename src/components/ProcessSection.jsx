@@ -101,7 +101,7 @@ const ProcessStep = ({ step, index }) => {
           <>
             <div className="flex items-center gap-4 mb-3">
               <h3 className="text-xl font-bold text-black uppercase">{step.title}</h3>
-              <span className="text-4xl font-bold text-[#FFD000]">.{step.number}</span>
+              <span className="text-4xl font-bold text-[#FF9933]">.{step.number}</span>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed max-w-md">{step.description}</p>
           </>
@@ -110,8 +110,8 @@ const ProcessStep = ({ step, index }) => {
 
       {/* Center icon box */}
       <div className="flex items-start justify-center pt-2">
-        <div className="w-20 h-20 bg-gray-100 border-2 border-[#FFD000]/40 rounded-lg flex items-center justify-center hover:border-[#FFD000] hover:bg-[#FFF9E6] hover:shadow-lg hover:shadow-[#FFD000]/20 transition-all duration-300">
-          <Icon className="w-10 h-10 text-[#FFD000]" strokeWidth={1.5} />
+        <div className="w-20 h-20 bg-gray-100 border-2 border-[#FF9933]/40 rounded-lg flex items-center justify-center hover:border-[#FF9933] hover:bg-[#FFF9E6] hover:shadow-lg hover:shadow-[#FF9933]/20 transition-all duration-300">
+          <Icon className="w-10 h-10 text-[#FF9933]" strokeWidth={1.5} />
         </div>
       </div>
 
@@ -120,7 +120,7 @@ const ProcessStep = ({ step, index }) => {
         {!isLeft && (
           <>
             <div className="flex items-center gap-4 mb-3">
-              <span className="text-4xl font-bold text-[#FFD000]">.{step.number}</span>
+              <span className="text-4xl font-bold text-[#FF9933]">.{step.number}</span>
               <h3 className="text-xl font-bold text-black uppercase">{step.title}</h3>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed max-w-md">{step.description}</p>
@@ -135,8 +135,8 @@ const ProcessSection = () => {
   return (
     <section className="py-24 px-6 bg-white relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#FFD000]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFD000]/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
@@ -144,13 +144,13 @@ const ProcessSection = () => {
           <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
             How We Do It
           </h2>
-          {/* <p className="text-2xl md:text-3xl text-[#FFD000] italic font-serif">
+          {/* <p className="text-2xl md:text-3xl text-[#FF9933] italic font-serif">
             The Bloom Process
           </p> */}
         </div>
 
         {/* Vertical line in the center - adjusted positioning */}
-        <div className="absolute left-1/2 top-56 bottom-10 w-px bg-gradient-to-b from-[#FFD000]/60 via-[#FFD000]/30 to-transparent transform -translate-x-1/2 hidden lg:block"></div>
+        <div className="absolute left-1/2 top-56 bottom-10 w-px bg-gradient-to-b from-[#FF9933]/60 via-[#FF9933]/30 to-transparent transform -translate-x-1/2 hidden lg:block"></div>
 
         {/* Process Steps */}
         <div className="relative">
