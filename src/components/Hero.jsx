@@ -85,31 +85,78 @@ function BrandLogoMarquee() {
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-20 bg-white overflow-hidden">
+    <section className="relative pt-24 md:pt-32 pb-32 md:pb-48 lg:pb-56 bg-white overflow-hidden min-h-screen flex items-center">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFCC99]/20 rounded-full blur-3xl"></div>
       
-      <div className="max-w-7xl mx-auto relative z-10 px-6">
+      <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-6">
         {/* Centered Hero Content */}
-        <div className="max-w-4xl mx-auto text-center space-y-10 mt-12">
-          <h1 className="font-bold text-black leading-[1.05] tracking-tight text-5xl md:text-6xl lg:text-7xl">
-            All your <span className="relative inline-block"><span className="bg-gradient-to-r from-[#FFD000] to-[#FFEA00] bg-clip-text text-transparent">marketing</span></span><br />needs in one single<br />monthly subscription
-          </h1>
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5">
-            <button className="bg-[#FFD000] text-black px-10 py-4 rounded-full font-semibold text-lg hover:bg-[#FFEA00] transition-all hover:shadow-xl hover:scale-105 flex items-center space-x-2 group">
-              <span>Start 14-day free trial</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-black" />
-            </button>
-            <span className="text-gray-600 font-medium">No credit card required</span>
-          </div>
-        </div>
+       <div className="max-w-5xl mx-auto text-center space-y-6 md:space-y-8 mt-8 md:mt-12">
+  <h1 className="font-bold text-black leading-[1.1] tracking-tight text-4xl md:text-6xl lg:text-7xl animate-fade-in-up">
+    Trend
+    <span className="relative inline-flex items-center">
+      <span className="text-black">L</span>
+
+      {/* SVG pill 'O' (hollow rounded rectangle) - responsive sizes */}
+     <span
+  className="relative inline-flex items-center mx-1 md:mx-2"
+style={{ transform: 'translateY(0.10em)' }}
+  aria-hidden="true"
+>
+
+        <svg
+          viewBox="0 0 120 56"
+          className="inline-block w-10 h-5 md:w-16 md:h-8 lg:w-20 lg:h-10"
+          preserveAspectRatio="xMidYMid meet"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* outer rounded rect stroke */}
+          <rect
+            x="6"
+            y="6"
+            width="108"
+            height="44"
+            rx="22"
+            fill="none"
+            stroke="#FF9933"
+            strokeWidth="12"               /* tune thickness per breakpoint by changing class above if needed */
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+        </svg>
+      </span>
+
+      <span className="text-black">op</span>
+    </span>
+    <br />
+    Your marketing,
+    <br />
+    <span className="text-[#FF9933]">simplified</span>
+  </h1>
+
+  <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in stagger-2 px-4">
+    One subscription. Complete digital marketing solutions.
+  </p>
+
+  <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5 animate-fade-in stagger-3 px-4">
+    <button className="w-full sm:w-auto bg-[#FF9933] text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-[#E68A2E] transition-all hover:shadow-xl hover:scale-105 flex items-center justify-center space-x-2 group">
+      <span>Start 14-day free trial</span>
+      {/* Replace ArrowRight with your icon component */}
+      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform text-white" />
+    </button>
+    <span className="text-sm md:text-base text-gray-600 font-medium">No credit card required</span>
+  </div>
+</div>
+
       </div>
 
   {/* Brand Logo Marquee - replaces stat cards - Full width outside container */}
+  {/*
   <div className="mt-24 -mx-6">
     <BrandLogoMarquee />
   </div>
+  */}
     </section>
   );
 };
@@ -201,7 +248,7 @@ const AnimatedPhoneMockups = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
             
             {/* Top Bar */}
-            <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10 bg-gradient-to-r from-[#FFD000]/80 to-[#FFEA00]/80">
+            <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10 bg-gradient-to-r from-[#FF9933]/80 to-[#FF9933]/80">
               <div className="flex items-center gap-2">
                 <img 
                   src="/images/trend loop logo .png"
@@ -243,15 +290,15 @@ const AnimatedPhoneMockups = () => {
             <div className="absolute right-3 bottom-20 flex flex-col gap-4 items-center z-10">
               <div className="flex flex-col items-center">
                 <Heart className="w-6 h-6 text-black drop-shadow-lg" />
-                <span className="text-[#FFD000] text-[10px] font-semibold mt-0.5 drop-shadow-lg">{likes}K</span>
+                <span className="text-[#FF9933] text-[10px] font-semibold mt-0.5 drop-shadow-lg">{likes}K</span>
               </div>
               <div className="flex flex-col items-center">
                 <MessageCircle className="w-6 h-6 text-black drop-shadow-lg" />
-                <span className="text-[#FFD000] text-[10px] font-semibold mt-0.5 drop-shadow-lg">234</span>
+                <span className="text-[#FF9933] text-[10px] font-semibold mt-0.5 drop-shadow-lg">234</span>
               </div>
               <div className="flex flex-col items-center">
                 <Send className="w-6 h-6 text-black drop-shadow-lg" />
-                <span className="text-[#FFD000] text-[10px] font-semibold mt-0.5 drop-shadow-lg">89</span>
+                <span className="text-[#FF9933] text-[10px] font-semibold mt-0.5 drop-shadow-lg">89</span>
               </div>
             </div>
 
@@ -300,10 +347,10 @@ const AnimatedPhoneMockups = () => {
                       <div className="font-semibold text-xs">TrendLoop Media</div>
                       <div className="text-[10px] text-gray-500">{post * 3}m · Public</div>
                     </div>
-                    <div className="text-[10px] px-2 py-0.5 rounded-full bg-[#FFF2B0] text-black font-medium border border-[#FFD000]/60">Boost</div>
+                    <div className="text-[10px] px-2 py-0.5 rounded-full bg-[#FFF2B0] text-black font-medium border border-[#FF9933]/60">Boost</div>
                   </div>
                   <p className="text-xs text-gray-700 mb-2 leading-relaxed">Accelerating engagement across channels. Organic reach up <span className="font-semibold text-[#1877F2]">{5+post}%</span> today.</p>
-                  <div className="w-full h-28 bg-gradient-to-br from-[#1877F2]/15 to-[#FFD000]/25 rounded-lg mb-2"></div>
+                  <div className="w-full h-28 bg-gradient-to-br from-[#1877F2]/15 to-[#FF9933]/25 rounded-lg mb-2"></div>
                   <div className="flex items-center justify-between text-[10px] text-gray-600 mb-1">
                     <div className="flex items-center gap-1">
                       <ThumbsUp className="w-3 h-3 text-[#1877F2]" fill="#1877F2" />
