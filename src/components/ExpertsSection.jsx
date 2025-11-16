@@ -36,7 +36,7 @@ const ExpertsSection = () => {
                 <div className="flex flex-col items-start">
                   <div className="flex items-center space-x-1">
                     <span className="text-white font-bold text-lg">4.9+</span>
-                    <Star className="w-4 h-4 text-[#FFD000] fill-[#FFD000]" />
+                    <Star className="w-4 h-4 text-[#FF9933] fill-[#FF9933]" />
                   </div>
                   <span className="text-white/80 text-xs">rating on Clutch</span>
                 </div>
