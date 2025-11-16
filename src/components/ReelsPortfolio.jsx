@@ -35,7 +35,7 @@ const ReelsPortfolio = () => {
   const [selectedCategory, setSelectedCategory] = React.useState('All Cases');
 
   return (
-    <section className="py-24 px-6 bg-white" id="portfolio">
+    <section id="work" className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14 space-y-6">
           <h2 className="font-bold leading-[1.05] tracking-tight text-4xl md:text-5xl">
@@ -55,8 +55,8 @@ const ReelsPortfolio = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-7 py-3 rounded-full font-semibold text-base transition-all focus:outline-none ${
                 selectedCategory === cat
-                  ? 'bg-gradient-to-r from-[#FFD000] to-[#FFEA00] text-black shadow-lg'
-                  : 'bg-gray-100 text-gray-700'
+                  ? 'bg-[#FF9933] text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
               {cat}
@@ -200,7 +200,7 @@ const ReelsPortfolio = () => {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <button className="bg-[#FFD000] hover:bg-[#FFEA00] text-black font-semibold px-10 py-4 rounded-full shadow-sm hover:shadow-lg transition">
+          <button className="bg-[#FF9933] hover:bg-[#E68A2E] text-white font-semibold px-10 py-4 rounded-full shadow-sm hover:shadow-lg transition">
             View full portfolio
           </button>
         </div>
