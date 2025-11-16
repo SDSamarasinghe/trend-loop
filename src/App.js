@@ -10,6 +10,7 @@ import ServicesSlider from './components/ServicesSlider';
 import ProcessSection from './components/ProcessSection';
 import Testimonials from './components/Testimonials';
 import ReelsPortfolio from './components/ReelsPortfolio';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <ProcessSection />
       <ReelsPortfolio />
       <Testimonials />
+      <Contact />
       <Footer />
     </div>
   );
