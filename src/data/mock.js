@@ -264,7 +264,7 @@ export const ourServices = [
     description: 'High-quality video content for brand awareness and engagement.'
   },
   {
-    title: 'Email Campaigns',
+    title: 'Ad Campaigns',
     description: 'Strategic email marketing to nurture leads and drive conversions.'
   },
   {
