@@ -173,55 +173,87 @@ export const footerLinks = {
   ]
 };
 
-// Portfolio reels (short-form vertical content)
+// Portfolio reels (short-form vertical content - 9:16 format)
+// Categories: Automotive, Real Estate, Saloon & Barber, Restaurant, Lifestyle, Cinematic
+// Note: Replace these placeholder videos with your actual reel videos
 export const reelsPortfolio = [
   {
     id: 1,
-    image: '/images/budget-in-barry.jpeg',
-    // titleTop: '$700K',
-    // titleBottom: 'Budget in Barrie',
-    theme: 'blue',
-    size: 'tall'
+    video: '/videos/reel-1.mp4',
+    title: 'Budget in Barrie',
+    thumbnail: '/images/budget-in-barry.jpeg',
+    category: 'Real Estate'
   },
   {
     id: 2,
-    image: '/images/home-buyer-programms.jpeg',
-    // titleTop: 'Losing',
-    // titleBottom: 'Homes After Pre-approval',
-    theme: 'red',
-    size: 'short'
+    video: '/videos/reel-2.mp4',
+    title: 'Home Buyer Programs',
+    thumbnail: '/images/home-buyer-programms.jpeg',
+    category: 'Real Estate'
   },
   {
     id: 3,
-    image: '/images/invest-real-state.jpeg',
-    // titleTop: 'Funniest',
-    // titleBottom: 'Questions Asked',
-    theme: 'orange',
-    size: 'tall'
+    video: '/videos/reel-3.mp4',
+    title: 'Real Estate Investment',
+    thumbnail: '/images/invest-real-state.jpeg',
+    category: 'Real Estate'
   },
   {
     id: 4,
-    image: '/images/realtor-journey.jpeg',
-    // titleTop: 'Realtor',
-    // titleBottom: 'Journey',
-    theme: 'red',
-    size: 'short'
+    video: '/videos/reel-4.mp4',
+    title: 'Realtor Journey',
+    thumbnail: '/images/realtor-journey.jpeg',
+    category: 'Lifestyle'
   },
   {
     id: 5,
-    image: '/images/dream-home.jpeg',
-    // titleTop: 'Finding Your',
-    // titleBottom: 'Dream Home',
-    theme: 'teal',
-    size: 'tall'
+    video: '/videos/reel-5.mp4',
+    title: 'Dream Home',
+    thumbnail: '/images/dream-home.jpeg',
+    category: 'Real Estate'
   },
   {
     id: 6,
-    image: '/images/North-bay.jpeg',
-    // titleTop: 'Looking To',
-    // titleBottom: 'Invest North Bay',
-    theme: 'green',
-    size: 'short'
+    video: '/videos/reel-6.mp4',
+    title: 'North Bay Investment',
+    thumbnail: '/images/North-bay.jpeg',
+    category: 'Real Estate'
+  },
+  {
+    id: 7,
+    video: '/videos/reel-7.mp4',
+    title: 'Automotive Showcase',
+    category: 'Automotive'
+  },
+  {
+    id: 8,
+    video: '/videos/reel-8.mp4',
+    title: 'Barber Shop Vibes',
+    category: 'Saloon & Barber'
+  },
+  {
+    id: 9,
+    video: '/videos/reel-9.mp4',
+    title: 'Restaurant Experience',
+    category: 'Restaurant'
+  },
+  {
+    id: 10,
+    video: '/videos/reel-10.mp4',
+    title: 'Cinematic Story',
+    category: 'Cinematic'
+  },
+  {
+    id: 11,
+    video: '/videos/reel-11.mp4',
+    title: 'Lifestyle Moments',
+    category: 'Lifestyle'
+  },
+  {
+    id: 12,
+    video: '/videos/reel-12.mp4',
+    title: 'Fine Dining',
+    category: 'Restaurant'
   }
 ];
 
