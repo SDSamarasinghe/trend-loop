@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Heart, MessageCircle, Send, ThumbsUp } from 'lucide-react';
 
 import { heroTestimonials } from '../data/mock';
+import { GridPattern } from './ui/shadcn-io/grid-pattern';
+import { cn } from '../lib/utils';
 
 // Horizontally scrolling brand logo marquee
 const brandLogos = [
@@ -86,6 +88,31 @@ function BrandLogoMarquee() {
 const Hero = () => {
   return (
     <section className="relative pt-24 md:pt-32 pb-32 md:pb-48 lg:pb-56 bg-white overflow-hidden min-h-screen flex items-center">
+      {/* Grid pattern background (official shadcn implementation) */}
+      <GridPattern
+        width={40}
+        height={40}
+        x={-1}
+        y={-1}
+        squares={[
+          [4, 4],
+          [5, 1],
+          [8, 2],
+          [5, 3],
+          [5, 5],
+          [10, 10],
+          [12, 15],
+          [15, 10],
+          [10, 15],
+          [15, 10],
+        ]}
+        className={cn(
+          "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
+          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+          "fill-[#FF9933]/20 stroke-[#FF9933]/20"
+        )}
+      />
+      
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFCC99]/20 rounded-full blur-3xl"></div>
