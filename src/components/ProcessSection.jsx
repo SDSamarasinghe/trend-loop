@@ -1,53 +1,53 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Target, Users, Crosshair, Calendar, Rocket, MessageSquare } from 'lucide-react';
+import { Target, Users, Crosshair, Calendar, Rocket, MessageSquare, FileText, Video, Edit, Share2 } from 'lucide-react';
 
 const processSteps = [
   {
     id: 1,
     number: '01',
-    title: 'AUDIT',
+    title: 'ONBOARDING',
     icon: Target,
-    description: 'Analyze and evaluate your current performance (and your competitors\') to identify areas for improvement and develop an action plan for improved social media strategies.',
+    description: 'We begin with a deep dive into your brand. We analyze your background, industry, audience, and competitors to fully understand your goals and creative direction. This helps us build content that is relevant, engaging, and aligned with your brand identity.',
     side: 'left'
   },
   {
     id: 2,
     number: '02',
-    title: 'COMMUNITY PLAYBOOK',
-    icon: Users,
-    description: 'Develop a comprehensive guide that outlines how to engage with and grow your brand\'s online community. It includes how to respond to comments and messages, handle crisis situations, and track and analyze KPIs.',
+    title: 'BOOKING',
+    icon: Calendar,
+    description: 'Once everything is confirmed, we book your shoot date and handle all scheduling details — including location, timing, and setup. You\'ll receive a calendar invite so everything is organized and easy to follow.',
     side: 'right'
   },
   {
     id: 3,
     number: '03',
-    title: 'SOCIAL MEDIA STRATEGY',
-    icon: Crosshair,
-    description: 'Establish a solid online presence through social media by defining your target audience, identifying crucial content pillars, and gaining a deep understanding of your brand personality and image.',
+    title: 'CONTENT SCRIPTING',
+    icon: FileText,
+    description: 'We create engaging and clear scripts and content plans based on your business and goals. This helps make your message easy to understand and keeps your audience interested.',
     side: 'left'
   },
   {
     id: 4,
     number: '04',
-    title: 'CONTENT CALENDAR',
-    icon: Calendar,
-    description: 'Plan and organize social media content for the month, based on various factors such as seasonality, trends and key messages.',
+    title: 'PRODUCTION',
+    icon: Video,
+    description: 'We record all the required content during the scheduled time. Our studio has a teleprompter to help you speak comfortably, and we guide you through the entire process to make the shoot smooth and easy.',
     side: 'right'
   },
   {
     id: 5,
     number: '05',
-    title: 'CONTENT CREATION',
-    icon: Rocket,
-    description: 'Produce engaging visuals (video, photo, digital images, GIF, etc.) for each publication based on platforms and previous top-performing posts.',
+    title: 'POST-PRODUCTION',
+    icon: Edit,
+    description: 'We handle all post-production elements — editing, sound design, color, text overlays, and more. Delivery is done within 7–10 days, depending on the amount of content included in your package.',
     side: 'left'
   },
   {
     id: 6,
     number: '06',
-    title: 'COMMUNITY MANAGEMENT',
-    icon: MessageSquare,
-    description: 'Monitor platforms, respond to customer feedback and requests promptly, and engage in meaningful interactions with influencers, partners and customers.',
+    title: 'CONTENT MANAGEMENT',
+    icon: Share2,
+    description: 'We take full control of your social media posting so you don\'t have to worry about it. We create your monthly content schedule, write captions, select effective hashtags, and post at the best times — ensuring your pages stay active, consistent, and easy to manage without taking up your time.',
     side: 'right'
   }
 ];
@@ -110,7 +110,7 @@ const ProcessStep = ({ step, index }) => {
 
       {/* Center icon box */}
       <div className="flex items-start justify-center pt-2">
-        <div className="w-20 h-20 bg-gray-100 border-2 border-[#FF9933]/40 rounded-lg flex items-center justify-center hover:border-[#FF9933] hover:bg-[#FFF9E6] hover:shadow-lg hover:shadow-[#FF9933]/20 transition-all duration-300">
+        <div className="w-20 h-20 bg-white border-2 border-[#FF9933]/40 rounded-lg flex items-center justify-center hover:border-[#FF9933] hover:bg-[#FFF9E6] hover:shadow-lg hover:shadow-[#FF9933]/20 transition-all duration-300">
           <Icon className="w-10 h-10 text-[#FF9933]" strokeWidth={1.5} />
         </div>
       </div>
