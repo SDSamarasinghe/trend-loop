@@ -94,13 +94,8 @@ const Hero = () => {
         {/* Centered Hero Content */}
        <div className="max-w-5xl mx-auto text-center space-y-6 md:space-y-8 mt-8 md:mt-12">
   <h1 className="font-bold text-black leading-[1.1] tracking-tight text-4xl md:text-6xl lg:text-7xl animate-fade-in-up">
-    Trend
-    <span className="relative inline-flex items-center">
-      <span className="text-black">L</span>
-
-      {/* SVG pill 'O' (hollow rounded rectangle) - responsive sizes */}
-     <span
-  className="relative inline-flex items-center mx-1 md:mx-2"
+    Trend<span className="relative inline-flex items-center">L<span
+  className="relative inline-flex items-center mx-0.5"
 style={{ transform: 'translateY(0.10em)' }}
   aria-hidden="true"
 >
@@ -120,15 +115,12 @@ style={{ transform: 'translateY(0.10em)' }}
             rx="22"
             fill="none"
             stroke="#FF9933"
-            strokeWidth="12"               /* tune thickness per breakpoint by changing class above if needed */
+            strokeWidth="12"
             strokeLinejoin="round"
             strokeLinecap="round"
           />
         </svg>
-      </span>
-
-      <span className="text-black">op</span>
-    </span>
+      </span>op</span>
     <br />
     Your marketing,
     <br />
