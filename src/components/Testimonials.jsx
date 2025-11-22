@@ -33,21 +33,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center space-y-8 max-w-5xl mx-auto mt-4">
-          <h2 className="font-bold leading-[1.05] tracking-tight text-4xl md:text-5xl lg:text-6xl">
-            <span className="text-black">Everything you need to start sending </span>
-            <span className="bg-gradient-to-r from-[#FF9933] to-[#FF9933] bg-clip-text text-transparent">drip campaigns</span>
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Turn attention into loyal audiences. Strategic creative, data-driven optimization, and consistent execution—wrapped in one monthly subscription.
-          </p>
-          <div className="flex justify-center">
-            <button className="bg-[#FF9933] hover:bg-[#E68A2E] text-white font-semibold px-8 py-3 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2">
-              Join Waitlist <span aria-hidden="true">&rarr;</span>
-            </button>
-          </div>
-        </div>
+
       </div>
     </section>
   );
