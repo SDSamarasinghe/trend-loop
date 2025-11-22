@@ -114,25 +114,28 @@ export const features = [
 
 export const testimonials = [
   {
+    id: 1,
+    quote:
+      'I was nervous at first, but the team made me feel completely at ease. They were patient, supportive, and helpful with all my retakes. Huge thanks to everyone for making the whole process so smooth and enjoyable!',
+    author: 'Rajat Patel',
+    role: 'Mortgage Agent',
+    avatar: '/images/Artboard 1.png'
+  },
+  {
+    id: 2,
+    quote:
+      'Just wrapped an awesome session with Trend Loop! Great vibe, super easy support with my script, and insane value for the price. I highly recommend it!',
+    author: 'Shaurya Kumar',
+    role: 'Real Estate Agent',
+    avatar: '/images/Artboard 2.png'
+  },
+  {
     id: 3,
-    quote: 'Having used other marketing platforms, I was super pleased to see Mailcoach. It\'s a breath of fresh air.',
-    author: 'Simon Hamp',
-    role: 'Freelance Software Engineer',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Simon'
-  },
-  {
-    id: 4,
-    quote: 'Mailcoach is the perfect balance of simplicity and power. It does exactly what we need.',
-    author: 'Sarah Chen',
-    role: 'Product Manager, TechCorp',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah'
-  },
-  {
-    id: 5,
-    quote: 'The developer experience is outstanding. Setting up was a breeze and the API is intuitive.',
-    author: 'Marcus Johnson',
-    role: 'CTO, StartupHub',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus'
+    quote:
+      "They helped me on this session and they were amazing. I really enjoyed it. I'm looking forward to doing much more with you guys and getting going.",
+    author: 'Rosa Bolia',
+    role: 'Real Estate Agent',
+    avatar: '/images/Artboard 3.png'
   }
 ];
 
