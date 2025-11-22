@@ -100,7 +100,7 @@ const ProcessStep = ({ step, index }) => {
         {isLeft && (
           <>
             <div className="flex items-center gap-4 mb-3">
-              <h3 className="text-xl font-bold text-black uppercase">{step.title}</h3>
+              <h3 className="text-5xl md:text-6xl font-bold text-black">{step.title}</h3>
               <span className="text-4xl font-bold text-[#FF9933]">.{step.number}</span>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed max-w-md">{step.description}</p>
@@ -121,7 +121,7 @@ const ProcessStep = ({ step, index }) => {
           <>
             <div className="flex items-center gap-4 mb-3">
               <span className="text-4xl font-bold text-[#FF9933]">.{step.number}</span>
-              <h3 className="text-xl font-bold text-black uppercase">{step.title}</h3>
+              <h3 className="text-5xl md:text-6xl font-bold text-black">{step.title}</h3>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed max-w-md">{step.description}</p>
           </>
