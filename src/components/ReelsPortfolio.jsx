@@ -142,7 +142,7 @@ const ReelsPortfolio = () => {
             <span className="bg-gradient-to-r from-[#FF9933] to-[#FF9933] bg-clip-text text-transparent">Work</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Vertical content crafted to capture attention and reinforce brand authority across social platforms.
+            your brand & our creative touch built for social media.
           </p>
         </div>
 
