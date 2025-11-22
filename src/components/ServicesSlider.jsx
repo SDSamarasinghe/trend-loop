@@ -98,19 +98,20 @@ const ServicesSlider = () => {
                       </div>
 
                       {/* Right Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-[#FF9933]/5 via-[#FF9933]/10 to-[#FF9933]/5 p-8 md:p-12 flex items-center justify-center">
-                        <div className="relative w-48 h-48">
-                          {/* Decorative circles */}
-                          <div className="absolute inset-0 rounded-full bg-[#FF9933]/10 animate-pulse"></div>
-                          <div className="absolute inset-4 rounded-full bg-[#FF9933]/20"></div>
-                          <div className="absolute inset-8 rounded-full bg-[#FF9933]/30"></div>
-                          
-                          {/* Center icon/number */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-6xl font-bold text-[#FF9933]">
-                              {index + 1}
-                            </div>
-                          </div>
+                      <div className="relative bg-gradient-to-br from-[#FFFBF0] to-white p-8 md:p-12 flex items-center justify-center overflow-hidden">
+                        {/* Subtle background decoration */}
+                        <div className="absolute inset-0 opacity-30">
+                          <div className="absolute top-10 right-10 w-32 h-32 rounded-full bg-[#FF9933]/10 blur-3xl"></div>
+                          <div className="absolute bottom-10 left-10 w-40 h-40 rounded-full bg-[#FF9933]/5 blur-3xl"></div>
+                        </div>
+                        
+                        {/* Service Image - Clean and Professional */}
+                        <div className="relative z-10">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-xl transition-all duration-500 hover:scale-105 hover:drop-shadow-2xl"
+                          />
                         </div>
                       </div>
                     </div>
