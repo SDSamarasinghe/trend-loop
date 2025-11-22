@@ -49,8 +49,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-black mb-1">Email Us</h4>
-                    <a href="mailto:hello@trendloop.com" className="text-gray-600 hover:text-[#FF9933] transition-colors">
-                      hello@trendloop.com
+                    <a href="mailto:trendloopinfo.ca@gmail.com" className="text-gray-600 hover:text-[#FF9933] transition-colors">
+                      trendloopinfo.ca@gmail.com
                     </a>
                   </div>
                 </div>
@@ -61,8 +61,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-black mb-1">Call Us</h4>
-                    <a href="tel:+1234567890" className="text-gray-600 hover:text-[#FF9933] transition-colors">
-                      +1 (234) 567-890
+                    <a href="tel:+14374232991" className="text-gray-600 hover:text-[#FF9933] transition-colors">
+                      +1 (437) 423-2991
                     </a>
                   </div>
                 </div>
@@ -74,7 +74,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-black mb-1">Location</h4>
                     <p className="text-gray-600">
-                      Toronto, Ontario<br />
+                      Ajax, Ontario<br />
                       Canada
                     </p>
                   </div>
