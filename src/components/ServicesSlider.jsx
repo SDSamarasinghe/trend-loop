@@ -45,9 +45,8 @@ const ServicesSlider = () => {
         <div className="inline-flex items-center gap-3 mb-6 bg-[#FF9933]/10 px-4 py-2 rounded-full">
           <span className="text-[#FF9933] font-semibold text-lg">Our Services</span>
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-          Comprehensive marketing services <br />
-          for <span className="text-[#FF9933]">measurable growth</span>
+        <h2 className="font-bold leading-[1.05] tracking-tight text-4xl md:text-5xl lg:text-6xl mb-4 text-black">
+          Complete Solutions for <span className="text-[#FF9933]">Your Brand</span>
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           From creative content to strategic campaigns, we deliver results that transform your brand presence
