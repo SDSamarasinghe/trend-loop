@@ -5,7 +5,7 @@ const processSteps = [
   {
     id: 1,
     number: '01',
-    title: 'ONBOARDING',
+    title: 'Onboarding',
     icon: Target,
     description: 'We begin with a deep dive into your brand. We analyze your background, industry, audience, and competitors to fully understand your goals and creative direction. This helps us build content that is relevant, engaging, and aligned with your brand identity.',
     side: 'left'
@@ -13,7 +13,7 @@ const processSteps = [
   {
     id: 2,
     number: '02',
-    title: 'BOOKING',
+    title: 'Booking',
     icon: Calendar,
     description: 'Once everything is confirmed, we book your shoot date and handle all scheduling details — including location, timing, and setup. You\'ll receive a calendar invite so everything is organized and easy to follow.',
     side: 'right'
@@ -21,7 +21,7 @@ const processSteps = [
   {
     id: 3,
     number: '03',
-    title: 'CONTENT SCRIPTING',
+    title: 'Content Scripting',
     icon: FileText,
     description: 'We create engaging and clear scripts and content plans based on your business and goals. This helps make your message easy to understand and keeps your audience interested.',
     side: 'left'
@@ -29,7 +29,7 @@ const processSteps = [
   {
     id: 4,
     number: '04',
-    title: 'PRODUCTION',
+    title: 'Production',
     icon: Video,
     description: 'We record all the required content during the scheduled time. Our studio has a teleprompter to help you speak comfortably, and we guide you through the entire process to make the shoot smooth and easy.',
     side: 'right'
@@ -37,7 +37,7 @@ const processSteps = [
   {
     id: 5,
     number: '05',
-    title: 'POST-PRODUCTION',
+    title: 'Post-Production',
     icon: Edit,
     description: 'We handle all post-production elements — editing, sound design, color, text overlays, and more. Delivery is done within 7–10 days, depending on the amount of content included in your package.',
     side: 'left'
@@ -45,7 +45,7 @@ const processSteps = [
   {
     id: 6,
     number: '06',
-    title: 'CONTENT MANAGEMENT',
+    title: 'Content Management',
     icon: Share2,
     description: 'We take full control of your social media posting so you don\'t have to worry about it. We create your monthly content schedule, write captions, select effective hashtags, and post at the best times — ensuring your pages stay active, consistent, and easy to manage without taking up your time.',
     side: 'right'
