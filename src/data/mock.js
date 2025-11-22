@@ -268,7 +268,7 @@ export const ourServices = [
     image: '/images/services/Artboard-4.png'
   },
   {
-    title: 'Email Campaign',
+    title: 'Ad Campaign',
     description: 'Strategic email marketing to nurture leads and drive conversions.',
     image: '/images/services/Artboard-3.png'
   },
