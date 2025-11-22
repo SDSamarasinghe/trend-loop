@@ -264,18 +264,22 @@ export const reelsPortfolio = [
 export const ourServices = [
   {
     title: 'Video Production',
-    description: 'High-quality video content for brand awareness and engagement.'
+    description: 'High-quality video content for brand awareness and engagement.',
+    image: '/images/services/Artboard-4.png'
   },
   {
-    title: 'Ad Campaigns',
-    description: 'Strategic email marketing to nurture leads and drive conversions.'
-  },
-  {
-    title: 'Social Media Management',
-    description: 'Grow and engage your audience across all major platforms.'
+    title: 'Email Campaign',
+    description: 'Strategic email marketing to nurture leads and drive conversions.',
+    image: '/images/services/Artboard-3.png'
   },
   {
     title: 'Content Strategy',
-    description: 'Data-driven content planning for measurable results.'
+    description: 'Data-driven content planning for measurable results.',
+    image: '/images/services/Artboard-2.png'
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Grow and engage your audience across all major platforms.',
+    image: '/images/services/Artboard-1.png'
   }
 ];
