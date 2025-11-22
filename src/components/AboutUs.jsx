@@ -3,10 +3,10 @@ import { CheckCircle2, TrendingUp, Users, Award } from 'lucide-react';
 
 const AboutUs = () => {
   const stats = [
-    { label: 'Projects Completed', value: '500+', icon: CheckCircle2 },
-    { label: 'Growth Rate', value: '300%', icon: TrendingUp },
-    { label: 'Happy Clients', value: '200+', icon: Users },
-    { label: 'Awards Won', value: '15+', icon: Award }
+    { label: 'One Stop Service', value: '360°', icon: CheckCircle2 },
+    { label: 'Satisfied Clients', value: '50+', icon: Users },
+    { label: 'Delivery Rate', value: '100%', icon: TrendingUp },
+    { label: 'Projects Completed', value: '200+', icon: Award }
   ];
 
   const teamMembers = [
@@ -72,13 +72,11 @@ const AboutUs = () => {
             <span className="text-[#FF9933] font-semibold text-lg">About Us</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
-            Meet the new generation of <br />
-            <span className="text-[#FF9933]">digital marketing services</span>
+            Meet the New Face of <br />
+            <span className="text-[#FF9933]">Social Media & Marketing</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Based in Canada, we specialize in creating high-quality video content and strategic 
-            marketing campaigns that help businesses stand out in today's competitive digital landscape. 
-            Our team combines creative expertise with data-driven strategies to deliver measurable results.
+            Based in Canada, we create quality social media content and marketing for both personal brands and businesses. Bold ideas. Creative strategies.
           </p>
         </div>
 
