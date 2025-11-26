@@ -11,3 +11,8 @@
 [build.environment]
   # Specify Node version 20 (required by react-router-dom@7.9.5)
   NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
