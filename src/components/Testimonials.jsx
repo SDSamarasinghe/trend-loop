@@ -4,14 +4,13 @@ import { testimonials } from '../data/mock';
 const Testimonials = () => {
   return (
     <section id="testimonials" className="py-20 px-6 bg-gradient-to-b from-[#FFFBF0] to-white">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative">
         {/* Testimonial Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
               className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-2"
-              style={{ transform: `rotate(${index % 2 === 0 ? '-1deg' : '1deg'})` }}
             >
               <p className="text-gray-800 text-lg mb-4 leading-relaxed">
                 {testimonial.quote.split('**').map((part, i) =>
