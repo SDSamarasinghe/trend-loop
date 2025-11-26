@@ -32,7 +32,7 @@ const GridPattern = ({ squares = [], className = '' }) => {
     <svg
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
-      className={cn('pointer-events-none absolute inset-0 w-full h-full text-[#FF9933]', className)}
+      className={cn('pointer-events-none absolute inset-0 w-full h-full text-accent', className)}
       aria-hidden
     >
       <g>
