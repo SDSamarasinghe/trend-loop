@@ -87,8 +87,28 @@ function BrandLogoMarquee() {
 
 const Hero = () => {
   return (
-    <section className="relative pt-24 md:pt-32 pb-32 md:pb-48 lg:pb-56 bg-white overflow-hidden min-h-screen flex items-center">
-      {/* Grid pattern background (official shadcn implementation) */}
+    <section className="relative pt-24 md:pt-32 pb-20 md:pb-28 lg:pb-32 overflow-hidden min-h-screen flex items-center">
+      {/* Background Image with Professional Overlay */}
+      <div className="absolute inset-0 z-0">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/images/webland%20artboard.png)',
+            filter: 'grayscale(100%)',
+            opacity: 1
+          }}
+        />
+        
+        {/* Multi-layer Gradient Overlays for Professional Look */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/30 to-[#FFFBF0]/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/40"></div>
+        
+        {/* Orange accent gradient overlay matching theme */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FF9933]/3 via-transparent to-[#FF9933]/5"></div>
+      </div>
+
+      {/* Grid pattern overlay for depth */}
       <GridPattern
         width={40}
         height={40}
@@ -109,13 +129,13 @@ const Hero = () => {
         className={cn(
           "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
           "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
-          "fill-[#FF9933]/20 stroke-[#FF9933]/20"
+          "fill-[#FF9933]/10 stroke-[#FF9933]/10 z-[1]"
         )}
       />
       
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFCC99]/20 rounded-full blur-3xl"></div>
+      {/* Subtle decorative glow elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9933]/5 rounded-full blur-3xl z-[1]"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl z-[1]"></div>
       
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-6">
         {/* Centered Hero Content */}
@@ -164,7 +184,7 @@ style={{ transform: 'translateY(0.10em)' }}
       {/* Replace ArrowRight with your icon component */}
       <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform text-white" />
     </button>
-    <span className="text-sm md:text-base text-gray-600 font-medium">No credit card required</span>
+    {/* <span className="text-sm md:text-base text-gray-600 font-medium">No credit card required</span> */}
   </div>
 </div>
 
