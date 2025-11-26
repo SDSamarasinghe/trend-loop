@@ -99,11 +99,11 @@ const ProcessStep = ({ step, index }) => {
       <div className={`flex flex-col ${isLeft ? 'items-end text-right' : ''}`}>
         {isLeft && (
           <>
-            <div className="flex items-center gap-4 mb-3">
-              <h3 className="text-5xl md:text-6xl font-bold text-black">{step.title}</h3>
-              <span className="text-5xl md:text-6xl font-bold text-[#FF9933]">.{step.number}</span>
+            <div className="flex items-center gap-3 mb-3">
+              <h3 className="text-3xl md:text-4xl font-bold text-black">{step.title}</h3>
+              <span className="text-3xl md:text-4xl font-bold text-[#FF9933]">.{step.number}</span>
             </div>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-md">{step.description}</p>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-md">{step.description}</p>
           </>
         )}
       </div>
@@ -119,11 +119,11 @@ const ProcessStep = ({ step, index }) => {
       <div className={`flex flex-col ${!isLeft ? 'items-start text-left' : ''}`}>
         {!isLeft && (
           <>
-            <div className="flex items-center gap-4 mb-3">
-              <span className="text-5xl md:text-6xl font-bold text-[#FF9933]">.{step.number}</span>
-              <h3 className="text-5xl md:text-6xl font-bold text-black">{step.title}</h3>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-3xl md:text-4xl font-bold text-[#FF9933]">.{step.number}</span>
+              <h3 className="text-3xl md:text-4xl font-bold text-black">{step.title}</h3>
             </div>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-md">{step.description}</p>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-md">{step.description}</p>
           </>
         )}
       </div>
@@ -133,7 +133,7 @@ const ProcessStep = ({ step, index }) => {
 
 const ProcessSection = () => {
   return (
-    <section className="py-24 px-6 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-20 px-6 bg-gradient-to-b from-white/80 to-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl"></div>
