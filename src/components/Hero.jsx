@@ -145,10 +145,6 @@ const Hero = () => {
         )}
       />
       
-      {/* Subtle decorative glow elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9933]/5 rounded-full blur-3xl z-[1]"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl z-[1]"></div>
-      
       <div className="max-w-7xl mx-auto relative z-10 px-4 md:px-6">
         {/* Centered Hero Content */}
        <div className="max-w-5xl mx-auto text-center space-y-6 md:space-y-8 mt-8 md:mt-12">
@@ -191,7 +187,10 @@ style={{ transform: 'translateY(0.10em)' }}
   </p>
 
   <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5 animate-fade-in stagger-3 px-4">
-    <button className="w-full sm:w-auto bg-[#FF9933] text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-[#E68A2E] transition-all hover:shadow-xl hover:scale-105 flex items-center justify-center space-x-2 group">
+    <button 
+      onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+      className="w-full sm:w-auto bg-[#FF9933] text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-[#E68A2E] transition-all hover:shadow-xl hover:scale-105 flex items-center justify-center space-x-2 group"
+    >
       <span>View Our Work</span>
       {/* Replace ArrowRight with your icon component */}
       <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform text-white" />
