@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Mail, ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
 
+const GOOGLE_CALENDAR_URL = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1sP_sP7vtvrzNttgCdHL50B5ricwv1ZaEC9fKmm_kPpDP1pLwwzCpn3fBWFd5N45H8pSA5kOEl";
+
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [calendarModalOpen, setCalendarModalOpen] = useState(false);
 
   const navLinks = [
     { name: 'About Us', href: '#about' },
@@ -27,6 +30,11 @@ const Header = () => {
       });
     }
     setMobileMenuOpen(false);
+  };
+
+  const handleScheduleCall = () => {
+    // Open Google Calendar booking link
+    window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ0VKz-dqzqUVR5eBzCdH0VQzqRFcGU0eF5cQWJhZGVk', '_blank');
   };
 
   return (
@@ -58,7 +66,10 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="flex items-center space-x-2 md:space-x-4">
-            <button className="hidden md:flex bg-[#FF9933] border-2 border-[#FF9933] text-black px-4 md:px-6 py-2 md:py-2.5 rounded-full font-medium hover:bg-[#E68A2E] transition-all hover:shadow-md items-center space-x-2">
+            <button 
+              onClick={() => setCalendarModalOpen(true)}
+              className="hidden md:flex bg-[#FF9933] border-2 border-[#FF9933] text-black px-4 md:px-6 py-2 md:py-2.5 rounded-full font-medium hover:bg-[#E68A2E] transition-all hover:shadow-md items-center space-x-2"
+            >
               <span className="text-sm md:text-base text-white">Schedule a Call</span>
               <ArrowRight className="w-4 h-4 text-white" />
             </button>
@@ -86,7 +97,10 @@ const Header = () => {
                   {link.name}
                 </button>
               ))}
-              <button className="bg-[#FF9933] text-black px-6 py-3 rounded-full font-medium hover:bg-[#E68A2E] transition-all mt-2 flex items-center justify-center space-x-2">
+              <button 
+                onClick={() => setCalendarModalOpen(true)}
+                className="bg-[#FF9933] text-black px-6 py-3 rounded-full font-medium hover:bg-[#E68A2E] transition-all mt-2 flex items-center justify-center space-x-2"
+              >
                 <span className="text-white">Schedule a Call</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
@@ -94,6 +108,33 @@ const Header = () => {
           </div>
         )}
       </div>
+
+      {/* Google Calendar Modal */}
+      {calendarModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="relative w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Close button */}
+            <button
+              onClick={() => setCalendarModalOpen(false)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[#FF9933] hover:bg-[#E68A2E] transition-all flex items-center justify-center shadow-lg"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            
+            {/* Calendar iframe */}
+            <div className="w-full h-[80vh] min-h-[600px]">
+              <iframe
+                src={GOOGLE_CALENDAR_URL}
+                style={{ border: 0 }}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                title="Schedule a Call with TrendLoop"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
