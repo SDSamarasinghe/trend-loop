@@ -192,7 +192,7 @@ style={{ transform: 'translateY(0.10em)' }}
 
   <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5 animate-fade-in stagger-3 px-4">
     <button className="w-full sm:w-auto bg-[#FF9933] text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-[#E68A2E] transition-all hover:shadow-xl hover:scale-105 flex items-center justify-center space-x-2 group">
-      <span>Start 14-day free trial</span>
+      <span>View Our Work</span>
       {/* Replace ArrowRight with your icon component */}
       <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform text-white" />
     </button>
