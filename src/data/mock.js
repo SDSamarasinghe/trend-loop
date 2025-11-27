@@ -113,6 +113,32 @@ export const features = [
 ];
 
 export const testimonials = [
+  // New testimonials
+  {
+    id: 101,
+    quote:
+      'I truly appreciate how easy the sessions were and how well the team understood my vision. I’m extremely happy with the results!',
+    author: 'Riya',
+    role: 'Real Estate Agent',
+    avatar: '/images/4 (1).png'
+  },
+  {
+    id: 102,
+    quote:
+      'I had a great session. It was quick, and the pricing was very affordable. I’m really satisfied with the experience.',
+    author: 'Shane Rego',
+    role: 'Fitness Coach',
+    avatar: '/images/4 (2).png'
+  },
+  {
+    id: 103,
+    quote:
+      'They were professional and delivered exactly what I needed. The quality was clean and the edits were solid. I would definitely recommend them!',
+    author: 'Ted Kulatunga',
+    role: 'Automotive Detailing',
+    avatar: '/images/4 (3).png'
+  },
+  // Existing testimonials
   {
     id: 1,
     quote:
