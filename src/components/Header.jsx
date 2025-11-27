@@ -59,7 +59,7 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="flex items-center space-x-2 md:space-x-4">
             <button className="hidden md:flex bg-[#FF9933] border-2 border-[#FF9933] text-black px-4 md:px-6 py-2 md:py-2.5 rounded-full font-medium hover:bg-[#E68A2E] transition-all hover:shadow-md items-center space-x-2">
-              <span className="text-sm md:text-base text-white">Join Waitlist</span>
+              <span className="text-sm md:text-base text-white">Schedule a Call</span>
               <ArrowRight className="w-4 h-4 text-white" />
             </button>
             
@@ -87,7 +87,7 @@ const Header = () => {
                 </button>
               ))}
               <button className="bg-[#FF9933] text-black px-6 py-3 rounded-full font-medium hover:bg-[#E68A2E] transition-all mt-2 flex items-center justify-center space-x-2">
-                <span className="text-white">Join Waitlist</span>
+                <span className="text-white">Schedule a Call</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
             </nav>
