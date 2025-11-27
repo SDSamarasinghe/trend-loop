@@ -86,17 +86,29 @@ function BrandLogoMarquee() {
 }
 
 const Hero = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/images/webland%20artboard.png';
+    img.onload = () => setImageLoaded(true);
+  }, []);
+
   return (
     <section className="relative pt-24 md:pt-32 pb-20 md:pb-28 lg:pb-32 overflow-hidden min-h-screen flex items-center">
       {/* Background Image with Professional Overlay */}
       <div className="absolute inset-0 z-0">
+        {/* Loading placeholder with blur */}
+        <div 
+          className={`absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-50 to-[#FFFBF0] transition-opacity duration-700 ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}
+        />
+        
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${imageLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
           style={{
             backgroundImage: 'url(/images/webland%20artboard.png)',
             filter: 'grayscale(100%)',
-            opacity: 1
           }}
         />
         
