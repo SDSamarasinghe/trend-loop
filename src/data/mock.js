@@ -291,21 +291,21 @@ export const ourServices = [
   {
     title: 'Video Production',
     description: 'High-quality video content for brand awareness and engagement.',
-    image: '/images/services/Artboard-4.png'
+    image: '/images/Video production .png'
   },
   {
     title: 'Ad Campaign',
     description: 'Strategic email marketing to nurture leads and drive conversions.',
-    image: '/images/services/Artboard-3.png'
+    image: '/images/Ad management .png'
   },
   {
     title: 'Content Strategy',
     description: 'Data-driven content planning for measurable results.',
-    image: '/images/services/Artboard-2.png'
+    image: '/images/Content strategy .png'
   },
   {
     title: 'Social Media Management',
     description: 'Grow and engage your audience across all major platforms.',
-    image: '/images/services/Artboard-1.png'
+    image: '/images/Social media.png'
   }
 ];
