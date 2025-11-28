@@ -211,7 +211,7 @@ style={{ transform: 'translateY(0.10em)' }}
   );
 };
 
-const AnimatedPhoneMockups = () => {
+export const AnimatedPhoneMockups = () => {
   const [likes, setLikes] = useState(1234);
   const [scrollPositionInsta, setScrollPositionInsta] = useState(0);
   const [scrollPositionFb, setScrollPositionFb] = useState(0);
