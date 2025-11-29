@@ -104,10 +104,10 @@ const AboutUs = () => {
           </p>
         </div>
 
-        {/* Single Phone with surrounding stat cards */}
-        <div ref={sectionRef} className="relative max-w-5xl mx-auto flex justify-center items-center mb-20 min-h-[560px] px-4">
+        {/* Two-column layout: phone left, bento cards right (desktop/tablet) */}
+        <div ref={sectionRef} className="relative max-w-7xl mx-auto mb-24 md:grid md:grid-cols-[400px_1fr] md:gap-8 lg:gap-12 items-center px-4">
           <div
-            className={`relative z-10 transition-all duration-800 ${
+            className={`relative z-10 transition-all duration-800 flex justify-center md:justify-center ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
             }`}
             style={{ transitionDelay: '250ms' }}
@@ -115,64 +115,71 @@ const AboutUs = () => {
             <SinglePhoneMockup />
           </div>
 
+          {/* Bento grid cards on the right */}
+          <div className="hidden md:grid grid-cols-2 gap-4 lg:gap-5">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={index}
+                  className={`bg-white/95 backdrop-blur-xl rounded-[20px] p-6 lg:p-7 shadow-lg border border-gray-100/60 group transition-all duration-500 hover:shadow-xl hover:scale-[1.02] hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:border-[#FF9933] flex flex-col justify-between min-h-[160px]`}
+                  style={{
+                    transitionDelay: `${280 + index * 140}ms`,
+                    animation: isVisible ? `modernSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${320 + index * 180}ms both` : undefined,
+                  }}
+                >
+                  <div className="flex items-start gap-3.5">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#FF9933]/10 to-[#FF9933]/5 group-hover:bg-white/20 transition-all duration-500 shadow-sm flex-shrink-0">
+                      <Icon className="w-7 h-7 text-[#FF9933] group-hover:text-white transition-all duration-500" strokeWidth={2.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-2 group-hover:text-white group-hover:bg-none transition-all duration-500">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm lg:text-base font-semibold text-gray-700 leading-tight group-hover:text-white/95 transition-colors duration-500">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-4 pt-3 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white transition-colors animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 transition-colors animate-pulse" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 transition-colors animate-pulse" style={{ animationDelay: '300ms' }} />
+                    <span className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1">Live</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mobile cards (stacked below phone) */}
+        <div className="md:hidden max-w-xl mx-auto grid grid-cols-1 xs:grid-cols-2 gap-4 px-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
-            // Modern card positions with more spacing from phone mockup
-            const positions = [
-              { top: '8%', left: '-2%', origin: 'bottom-right' },      // top-left
-              { top: '8%', right: '-2%', origin: 'bottom-left' },      // top-right
-              { bottom: '8%', left: '-2%', origin: 'top-right' },      // bottom-left
-              { bottom: '8%', right: '-2%', origin: 'top-left' }       // bottom-right
-            ];
-            const pos = positions[index];
             return (
               <div
                 key={index}
-                className={`absolute w-72 md:w-80 bg-white/95 backdrop-blur-xl rounded-[28px] p-6 shadow-lg border border-gray-100/50 group transition-all duration-500 ${
-                  isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-90'
-                } hover:shadow-2xl hover:scale-[1.05] hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:border-[#FF9933]`}
-                style={{
-                  ...pos,
-                  transitionDelay: `${320 + index * 200}ms`,
-                  animation: isVisible ? `modernSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${320 + index * 200}ms both` : undefined,
-                  transformOrigin: pos.origin,
-                  boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 153, 51, 0.08)'
-                }}
+                className={`bg-white/95 rounded-2xl p-5 shadow-md border border-gray-100/60 group transition-all duration-300 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                } hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:shadow-lg`}
+                style={{ transitionDelay: `${200 + index * 120}ms` }}
               >
-                {/* Gradient accent bar */}
-                <div className="absolute top-0 left-6 right-6 h-1 bg-gradient-to-r from-[#FF9933]/0 via-[#FF9933] to-[#FF9933]/0 group-hover:bg-gradient-to-r group-hover:from-white/0 group-hover:via-white group-hover:to-white/0 rounded-full transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                
-                <div className="relative">
-                  {/* Icon circle with modern styling */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#FF9933]/10 to-[#FF9933]/5 mb-4 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-white/20 transition-all duration-500 shadow-sm">
-                    <Icon className="w-8 h-8 text-[#FF9933] group-hover:text-white group-hover:scale-110 transition-all duration-500" strokeWidth={2.5} />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-[#FF9933]/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <Icon className="w-6 h-6 text-[#FF9933] group-hover:text-white transition-colors" />
                   </div>
-                  
-                  {/* Value with modern typography */}
-                  <div className="mb-2">
-                    <div className="text-5xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-3 group-hover:scale-105 group-hover:text-white group-hover:bg-none transition-all duration-500">
-                      {stat.value}
-                    </div>
-                    <div className="text-base font-semibold text-gray-700 leading-snug group-hover:text-white/95 transition-colors duration-500">
-                      {stat.label}
-                    </div>
-                  </div>
-                  
-                  {/* Modern progress indicator */}
-                  <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500">
-                    <div className="flex gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white animate-pulse transition-colors duration-500" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 animate-pulse transition-colors duration-500" style={{ animationDelay: '150ms' }} />
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 animate-pulse transition-colors duration-500" style={{ animationDelay: '300ms' }} />
-                    </div>
-                    <div className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1 transition-colors duration-500">
-                      Live Metric
-                    </div>
+                  <div>
+                    <div className="text-3xl font-bold text-[#FF9933] group-hover:text-white transition-colors">{stat.value}</div>
+                    <div className="text-sm font-semibold text-gray-700 group-hover:text-white/95 transition-colors">{stat.label}</div>
                   </div>
                 </div>
-                
-                {/* Hover gradient overlay */}
-                <div className="absolute inset-0 rounded-[28px] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#FF9933]/[0.02] via-transparent to-[#FF9933]/[0.03] transition-opacity duration-700 pointer-events-none" />
+                <div className="flex items-center gap-1.5 pt-3 border-t border-gray-100 group-hover:border-white/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white transition-colors" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 transition-colors" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 transition-colors" />
+                  <span className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1">Live Metric</span>
+                </div>
               </div>
             );
           })}
