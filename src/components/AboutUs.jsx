@@ -84,7 +84,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <section id="about" className="relative pt-24 pb-20 bg-gradient-to-b from-white via-[#FFFBF0] to-white overflow-hidden">
+    <section id="about" className="relative pt-32 pb-20 bg-gradient-to-b from-[#FFFBF0] via-[#FFFBF5] to-white overflow-hidden -mt-16">
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-[#FF9933]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#FF9933]/5 rounded-full blur-3xl"></div>
@@ -117,66 +117,62 @@ const AboutUs = () => {
 
           {stats.map((stat, index) => {
             const Icon = stat.icon;
-            // Restored wider bubble positions (slightly farther out for larger width)
+            // Modern card positions with more spacing from phone mockup
             const positions = [
-              { top: '8%', left: '2%', origin: 'bottom-right' },      // top-left
-              { top: '8%', right: '2%', origin: 'bottom-left' },      // top-right
-              { bottom: '8%', left: '2%', origin: 'top-right' },      // bottom-left
-              { bottom: '8%', right: '2%', origin: 'top-left' }       // bottom-right
+              { top: '8%', left: '-2%', origin: 'bottom-right' },      // top-left
+              { top: '8%', right: '-2%', origin: 'bottom-left' },      // top-right
+              { bottom: '8%', left: '-2%', origin: 'top-right' },      // bottom-left
+              { bottom: '8%', right: '-2%', origin: 'top-left' }       // bottom-right
             ];
             const pos = positions[index];
             return (
               <div
                 key={index}
-                className={`absolute w-64 md:w-72 bg-white rounded-3xl p-8 shadow-2xl border border-[#FF9933]/20 group transition-all duration-700 ${
+                className={`absolute w-72 md:w-80 bg-white/95 backdrop-blur-xl rounded-[28px] p-6 shadow-lg border border-gray-100/50 group transition-all duration-500 ${
                   isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-90'
-                } hover:shadow-3xl hover:scale-[1.04]`}
+                } hover:shadow-2xl hover:scale-[1.05] hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:border-[#FF9933]`}
                 style={{
                   ...pos,
                   transitionDelay: `${320 + index * 200}ms`,
-                  animation: isVisible ? `messagePopup 1.15s cubic-bezier(0.19, 1, 0.22, 1) ${320 + index * 200}ms both` : undefined,
+                  animation: isVisible ? `modernSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${320 + index * 200}ms both` : undefined,
                   transformOrigin: pos.origin,
-                  boxShadow: '0 24px 70px -12px rgba(255,153,51,0.28)'
+                  boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 153, 51, 0.08)'
                 }}
               >
-                {/* Bubble tail */}
-                <div
-                  className="absolute w-6 h-6 bg-white border-l border-b border-[#FF9933]/20 transform rotate-45"
-                  style={{
-                    [pos.origin.includes('right') ? 'right' : 'left']: '-14px',
-                    [pos.origin.includes('top') ? 'top' : 'bottom']: '38px'
-                  }}
-                />
-                <div className="relative z-10 overflow-hidden">
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className="w-14 h-14 rounded-2xl bg-[#FF9933]/10 flex items-center justify-center group-hover:bg-[#FF9933]/20 transition-all duration-500 shadow-inner">
-                      <Icon className="w-8 h-8 text-[#FF9933] group-hover:scale-110 transition-transform duration-500" />
+                {/* Gradient accent bar */}
+                <div className="absolute top-0 left-6 right-6 h-1 bg-gradient-to-r from-[#FF9933]/0 via-[#FF9933] to-[#FF9933]/0 group-hover:bg-gradient-to-r group-hover:from-white/0 group-hover:via-white group-hover:to-white/0 rounded-full transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                
+                <div className="relative">
+                  {/* Icon circle with modern styling */}
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#FF9933]/10 to-[#FF9933]/5 mb-4 group-hover:scale-110 group-hover:rotate-3 group-hover:bg-white/20 transition-all duration-500 shadow-sm">
+                    <Icon className="w-8 h-8 text-[#FF9933] group-hover:text-white group-hover:scale-110 transition-all duration-500" strokeWidth={2.5} />
+                  </div>
+                  
+                  {/* Value with modern typography */}
+                  <div className="mb-2">
+                    <div className="text-5xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-3 group-hover:scale-105 group-hover:text-white group-hover:bg-none transition-all duration-500">
+                      {stat.value}
                     </div>
-                    <div className="flex-1">
-                      <div className="text-4xl font-extrabold text-[#FF9933] leading-none mb-2 group-hover:animate-valuePop">
-                        {stat.value}
-                      </div>
-                      <div className="text-sm font-semibold text-gray-700 leading-tight group-hover:animate-labelSlide">
-                        {stat.label}
-                      </div>
+                    <div className="text-base font-semibold text-gray-700 leading-snug group-hover:text-white/95 transition-colors duration-500">
+                      {stat.label}
                     </div>
                   </div>
-                  {/* Conversation inner animation layer */}
-                  <div className="relative h-8 mt-1">
-                    <div className="absolute inset-0 flex items-center gap-2">
-                      <div className="flex gap-1 group-hover:animate-dotsFlow">
-                        <span className="dot-anim w-2 h-2 rounded-full bg-[#FF9933]" />
-                        <span className="dot-anim w-2 h-2 rounded-full bg-[#FF9933]" style={{ animationDelay: '140ms' }} />
-                        <span className="dot-anim w-2 h-2 rounded-full bg-[#FF9933]" style={{ animationDelay: '280ms' }} />
-                      </div>
-                      <div className="text-[11px] font-medium text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        updating metric...
-                      </div>
+                  
+                  {/* Modern progress indicator */}
+                  <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500">
+                    <div className="flex gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white animate-pulse transition-colors duration-500" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 animate-pulse transition-colors duration-500" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 animate-pulse transition-colors duration-500" style={{ animationDelay: '300ms' }} />
+                    </div>
+                    <div className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1 transition-colors duration-500">
+                      Live Metric
                     </div>
                   </div>
-                  {/* Hover reveal gradient */}
-                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#FF9933]/5 via-transparent to-[#FF9933]/10 transition-opacity duration-700" />
                 </div>
+                
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 rounded-[28px] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#FF9933]/[0.02] via-transparent to-[#FF9933]/[0.03] transition-opacity duration-700 pointer-events-none" />
               </div>
             );
           })}
@@ -185,57 +181,21 @@ const AboutUs = () => {
 
       {/* CSS Animations */}
       <style jsx>{`
-        @keyframes messagePopup {
+        @keyframes modernSlideIn {
           0% {
             opacity: 0;
-            transform: scale(0.3) translateY(50px) rotate(10deg);
-            filter: blur(10px);
-          }
-          30% {
-            opacity: 0.8;
-            transform: scale(0.8) translateY(20px) rotate(5deg);
-            filter: blur(5px);
+            transform: scale(0.9) translateY(30px);
           }
           60% {
             opacity: 1;
-            transform: scale(1.1) translateY(-10px) rotate(-2deg);
-            filter: blur(0px);
-          }
-          80% {
-            transform: scale(0.95) translateY(5px) rotate(1deg);
+            transform: scale(1.02) translateY(-5px);
           }
           100% {
             opacity: 1;
-            transform: scale(1) translateY(0) rotate(0deg);
-            filter: blur(0px);
+            transform: scale(1) translateY(0);
           }
         }
         
-        @keyframes valuePop {
-          0% { transform: translateY(6px) scale(0.95); opacity:0.2; }
-          50% { transform: translateY(-4px) scale(1.05); opacity:1; }
-          100% { transform: translateY(0) scale(1); opacity:1; }
-        }
-        .animate-valuePop { animation: valuePop 600ms ease-out forwards; }
-
-        @keyframes labelSlide {
-          0% { transform: translateX(-12px); opacity:0; }
-          60% { transform: translateX(4px); opacity:1; }
-          100% { transform: translateX(0); opacity:1; }
-        }
-        .animate-labelSlide { animation: labelSlide 700ms cubic-bezier(0.19,1,0.22,1) forwards; }
-
-        @keyframes dotsFlow {
-          0%, 100% { transform: translateX(0); }
-          50% { transform: translateX(6px); }
-        }
-        .animate-dotsFlow { animation: dotsFlow 1200ms ease-in-out infinite; }
-        .dot-anim { animation: pulseDot 1200ms ease-in-out infinite; }
-        @keyframes pulseDot {
-          0%, 100% { transform: scale(0.7); opacity:0.4; }
-          50% { transform: scale(1); opacity:1; }
-        }
-
         @keyframes float {
           0%, 100% {
             transform: translateY(0px);
@@ -252,11 +212,6 @@ const AboutUs = () => {
           50% {
             box-shadow: 0 25px 80px -5px rgba(255, 153, 51, 0.4);
           }
-        }
-        
-        /* Add floating animation to visible cards */
-        .message-card-visible {
-          animation: float 6s ease-in-out infinite, glow 4s ease-in-out infinite;
         }
       `}</style>
     </section>

@@ -95,7 +95,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative pt-24 md:pt-32 pb-20 md:pb-28 lg:pb-32 overflow-hidden min-h-screen flex items-center">
+    <section className="relative pt-24 md:pt-32 pb-32 md:pb-40 lg:pb-48 overflow-hidden min-h-screen flex items-center bg-gradient-to-b from-white via-white to-[#FFFBF0]">
       {/* Background Image with Professional Overlay */}
       <div className="absolute inset-0 z-0">
         {/* Loading placeholder with blur */}
@@ -115,6 +115,9 @@ const Hero = () => {
         {/* Multi-layer Gradient Overlays for Professional Look */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/30 to-[#FFFBF0]/20"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/40"></div>
+        
+        {/* Bottom fade gradient - only affects bottom 25% of image with lighter opacity */}
+        <div className="absolute inset-x-0 bottom-0 h-[25%] bg-gradient-to-t from-[#FFFBF0]/90 via-[#FFFBF0]/30 to-transparent"></div>
         
         {/* Orange accent gradient overlay matching theme */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#FF9933]/3 via-transparent to-[#FF9933]/5"></div>
