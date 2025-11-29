@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, TrendingUp, Users, Award } from 'lucide-react';
-import { AnimatedPhoneMockups } from './Hero';
+import SinglePhoneMockup from './SinglePhoneMockup';
 const AboutUs = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -104,78 +104,78 @@ const AboutUs = () => {
           </p>
         </div>
 
-        {/* Main Content Grid - Stats cards floating around phones like messages */}
-        <div ref={sectionRef} className="relative max-w-6xl mx-auto flex justify-center items-center mb-20 min-h-[600px] px-4">
-          {/* Center - Animated Phone Mockups */}
-          <div className={`relative z-10 transition-all duration-1000 ${
-            isVisible 
-              ? 'translate-y-0 opacity-100 scale-100' 
-              : 'translate-y-12 opacity-0 scale-90'
-          }`}
-          style={{ transitionDelay: '300ms' }}>
-            <AnimatedPhoneMockups />
+        {/* Single Phone with surrounding stat cards */}
+        <div ref={sectionRef} className="relative max-w-5xl mx-auto flex justify-center items-center mb-20 min-h-[560px] px-4">
+          <div
+            className={`relative z-10 transition-all duration-800 ${
+              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            }`}
+            style={{ transitionDelay: '250ms' }}
+          >
+            <SinglePhoneMockup />
           </div>
 
-          {/* Floating Stats Cards positioned around phones */}
           {stats.map((stat, index) => {
             const Icon = stat.icon;
-            
-            // Better positioned cards for proper alignment
+            // Restored wider bubble positions (slightly farther out for larger width)
             const positions = [
-              { top: '10%', left: '0%', origin: 'bottom-right' }, // Top left
-              { top: '10%', right: '0%', origin: 'bottom-left' }, // Top right  
-              { bottom: '10%', left: '0%', origin: 'top-right' }, // Bottom left
-              { bottom: '10%', right: '0%', origin: 'top-left' } // Bottom right
+              { top: '8%', left: '2%', origin: 'bottom-right' },      // top-left
+              { top: '8%', right: '2%', origin: 'bottom-left' },      // top-right
+              { bottom: '8%', left: '2%', origin: 'top-right' },      // bottom-left
+              { bottom: '8%', right: '2%', origin: 'top-left' }       // bottom-right
             ];
-            
             const pos = positions[index];
-            
             return (
               <div
                 key={index}
-                className={`absolute w-56 lg:w-64 bg-white rounded-2xl p-6 shadow-2xl border border-[#FF9933]/20 group cursor-pointer transform transition-all duration-1000 hover:scale-105 hover:shadow-3xl ${
-                  isVisible 
-                    ? 'translate-y-0 opacity-100 scale-100 rotate-0' 
-                    : 'translate-y-16 opacity-0 scale-75 rotate-3'
-                }`}
-                style={{ 
+                className={`absolute w-64 md:w-72 bg-white rounded-3xl p-8 shadow-2xl border border-[#FF9933]/20 group transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-90'
+                } hover:shadow-3xl hover:scale-[1.04]`}
+                style={{
                   ...pos,
-                  transitionDelay: `${(index + 1) * 400}ms`,
-                  animation: isVisible ? `messagePopup 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${(index + 1) * 400}ms both` : '',
+                  transitionDelay: `${320 + index * 200}ms`,
+                  animation: isVisible ? `messagePopup 1.15s cubic-bezier(0.19, 1, 0.22, 1) ${320 + index * 200}ms both` : undefined,
                   transformOrigin: pos.origin,
-                  boxShadow: '0 20px 60px -10px rgba(255, 153, 51, 0.25)'
+                  boxShadow: '0 24px 70px -12px rgba(255,153,51,0.28)'
                 }}
               >
-                {/* Message bubble tail */}
-                <div 
-                  className="absolute w-4 h-4 bg-white border-l border-b border-[#FF9933]/20 transform rotate-45"
+                {/* Bubble tail */}
+                <div
+                  className="absolute w-6 h-6 bg-white border-l border-b border-[#FF9933]/20 transform rotate-45"
                   style={{
-                    [pos.origin.includes('right') ? 'right' : 'left']: '-8px',
-                    [pos.origin.includes('top') ? 'top' : 'bottom']: '20px'
+                    [pos.origin.includes('right') ? 'right' : 'left']: '-14px',
+                    [pos.origin.includes('top') ? 'top' : 'bottom']: '38px'
                   }}
-                ></div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#FF9933]/10 flex items-center justify-center group-hover:bg-[#FF9933]/20 transition-colors flex-shrink-0">
-                      <Icon className="w-5 h-5 text-[#FF9933] group-hover:scale-110 transition-transform" />
+                />
+                <div className="relative z-10 overflow-hidden">
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-14 h-14 rounded-2xl bg-[#FF9933]/10 flex items-center justify-center group-hover:bg-[#FF9933]/20 transition-all duration-500 shadow-inner">
+                      <Icon className="w-8 h-8 text-[#FF9933] group-hover:scale-110 transition-transform duration-500" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-2xl lg:text-3xl font-bold text-[#FF9933] mb-1 group-hover:text-[#E68A2E] transition-colors">
+                    <div className="flex-1">
+                      <div className="text-4xl font-extrabold text-[#FF9933] leading-none mb-2 group-hover:animate-valuePop">
                         {stat.value}
                       </div>
-                      <div className="text-xs lg:text-sm font-medium text-gray-700 leading-tight">
+                      <div className="text-sm font-semibold text-gray-700 leading-tight group-hover:animate-labelSlide">
                         {stat.label}
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Animated dots indicator */}
-                  <div className="flex gap-1 opacity-60 justify-center">
-                    <div className="w-1.5 h-1.5 bg-[#FF9933] rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-1.5 h-1.5 bg-[#FF9933] rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-1.5 h-1.5 bg-[#FF9933] rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></div>
+                  {/* Conversation inner animation layer */}
+                  <div className="relative h-8 mt-1">
+                    <div className="absolute inset-0 flex items-center gap-2">
+                      <div className="flex gap-1 group-hover:animate-dotsFlow">
+                        <span className="dot-anim w-2 h-2 rounded-full bg-[#FF9933]" />
+                        <span className="dot-anim w-2 h-2 rounded-full bg-[#FF9933]" style={{ animationDelay: '140ms' }} />
+                        <span className="dot-anim w-2 h-2 rounded-full bg-[#FF9933]" style={{ animationDelay: '280ms' }} />
+                      </div>
+                      <div className="text-[11px] font-medium text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        updating metric...
+                      </div>
+                    </div>
                   </div>
+                  {/* Hover reveal gradient */}
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#FF9933]/5 via-transparent to-[#FF9933]/10 transition-opacity duration-700" />
                 </div>
               </div>
             );
@@ -211,6 +211,31 @@ const AboutUs = () => {
           }
         }
         
+        @keyframes valuePop {
+          0% { transform: translateY(6px) scale(0.95); opacity:0.2; }
+          50% { transform: translateY(-4px) scale(1.05); opacity:1; }
+          100% { transform: translateY(0) scale(1); opacity:1; }
+        }
+        .animate-valuePop { animation: valuePop 600ms ease-out forwards; }
+
+        @keyframes labelSlide {
+          0% { transform: translateX(-12px); opacity:0; }
+          60% { transform: translateX(4px); opacity:1; }
+          100% { transform: translateX(0); opacity:1; }
+        }
+        .animate-labelSlide { animation: labelSlide 700ms cubic-bezier(0.19,1,0.22,1) forwards; }
+
+        @keyframes dotsFlow {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(6px); }
+        }
+        .animate-dotsFlow { animation: dotsFlow 1200ms ease-in-out infinite; }
+        .dot-anim { animation: pulseDot 1200ms ease-in-out infinite; }
+        @keyframes pulseDot {
+          0%, 100% { transform: scale(0.7); opacity:0.4; }
+          50% { transform: scale(1); opacity:1; }
+        }
+
         @keyframes float {
           0%, 100% {
             transform: translateY(0px);
