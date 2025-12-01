@@ -1,6 +1,46 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, TrendingUp, Users, Award } from 'lucide-react';
 import SinglePhoneMockup from './SinglePhoneMockup';
+
+// Counter component for animated number increment
+const CounterNumber = ({ targetValue, isVisible }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const countRef = useRef(null);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    // Extract the numeric value from the string (e.g., "360°" -> 360)
+    const numericValue = parseInt(targetValue.replace(/[^0-9]/g, '')) || 0;
+    const suffix = targetValue.replace(/[0-9]/g, ''); // Get the suffix (°, +, %)
+
+    let currentValue = 0;
+    const increment = numericValue / 50; // 50 frames for smooth animation
+    const duration = 1500; // 1.5 seconds
+    const frameTime = duration / 50;
+
+    const interval = setInterval(() => {
+      currentValue += increment;
+      if (currentValue >= numericValue) {
+        currentValue = numericValue;
+        clearInterval(interval);
+      }
+      setDisplayValue(Math.floor(currentValue));
+    }, frameTime);
+
+    return () => clearInterval(interval);
+  }, [isVisible, targetValue]);
+
+  // Extract suffix to add back
+  const suffix = targetValue.replace(/[0-9]/g, '');
+
+  return (
+    <span>
+      {displayValue}
+      {suffix}
+    </span>
+  );
+};
 const AboutUs = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -134,7 +174,7 @@ const AboutUs = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-2 group-hover:text-white group-hover:bg-none transition-all duration-500">
-                        {stat.value}
+                        <CounterNumber targetValue={stat.value} isVisible={isVisible} />
                       </div>
                       <div className="text-sm lg:text-base font-semibold text-gray-700 leading-tight group-hover:text-white/95 transition-colors duration-500">
                         {stat.label}
@@ -170,7 +210,9 @@ const AboutUs = () => {
                     <Icon className="w-6 h-6 text-[#FF9933] group-hover:text-white transition-colors" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-[#FF9933] group-hover:text-white transition-colors">{stat.value}</div>
+                    <div className="text-3xl font-bold text-[#FF9933] group-hover:text-white transition-colors">
+                      <CounterNumber targetValue={stat.value} isVisible={isVisible} />
+                    </div>
                     <div className="text-sm font-semibold text-gray-700 group-hover:text-white/95 transition-colors">{stat.label}</div>
                   </div>
                 </div>
