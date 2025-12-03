@@ -208,81 +208,81 @@ export const footerLinks = {
 export const reelsPortfolio = [
   {
     id: 1,
-    video: '/videos/reel-1.mp4',
     title: 'Budget in Barrie',
     thumbnail: '/images/budget-in-barry.jpeg',
-    category: 'Real Estate'
+    category: 'Real Estate',
+    fileName: 'kites image vayanga'
   },
   {
     id: 2,
-    video: '/videos/reel-2.mp4',
     title: 'Home Buyer Programs',
     thumbnail: '/images/home-buyer-programms.jpeg',
-    category: 'Real Estate'
+    category: 'Real Estate',
+    fileName: 'Wedding recap'
   },
   {
     id: 3,
-    video: '/videos/reel-3.mp4',
     title: 'Real Estate Investment',
     thumbnail: '/images/invest-real-state.jpeg',
-    category: 'Real Estate'
+    category: 'Real Estate',
+    fileName: 'Kushmin BTS'
   },
   {
     id: 4,
-    video: '/videos/reel-4.mp4',
     title: 'Realtor Journey',
     thumbnail: '/images/realtor-journey.jpeg',
-    category: 'Lifestyle'
+    category: 'Lifestyle',
+    fileName: 'shaurya reel 07'
   },
   {
     id: 5,
-    video: '/videos/reel-5.mp4',
     title: 'Dream Home',
     thumbnail: '/images/dream-home.jpeg',
-    category: 'Real Estate'
+    category: 'Real Estate',
+    fileName: 'maternity shoot'
   },
   {
     id: 6,
-    video: '/videos/reel-6.mp4',
     title: 'North Bay Investment',
     thumbnail: '/images/North-bay.jpeg',
-    category: 'Real Estate'
+    category: 'Real Estate',
+    fileName: 'Torque & trim BTS (1)'
   },
   {
     id: 7,
-    video: '/videos/reel-7.mp4',
     title: 'Automotive Showcase',
-    category: 'Automotive'
+    category: 'Automotive',
+    fileName: 'avaic auto care'
   },
   {
     id: 8,
-    video: '/videos/reel-8.mp4',
     title: 'Barber Shop Vibes',
-    category: 'Saloon & Barber'
+    category: 'Saloon & Barber',
+    fileName: 'Copy of Torque & trim reel 01 final'
   },
   {
     id: 9,
-    video: '/videos/reel-9.mp4',
     title: 'Restaurant Experience',
-    category: 'Restaurant'
+    category: 'Restaurant',
+    fileName: 'reel 01'
   },
   {
     id: 10,
-    video: '/videos/reel-10.mp4',
     title: 'Cinematic Story',
-    category: 'Cinematic'
+    category: 'Cinematic',
+    fileName: 'Copy of Torque & trim reel 03 final'
   },
   {
     id: 11,
-    video: '/videos/reel-11.mp4',
     title: 'Lifestyle Moments',
-    category: 'Lifestyle'
+    category: 'Lifestyle',
+    fileName: 'sneh bts'
   },
   {
     id: 12,
-    video: '/videos/reel-12.mp4',
     title: 'Fine Dining',
-    category: 'Restaurant'
+    category: 'Restaurant',
+    fileName: 'REEL 02'
   }
 ];
 

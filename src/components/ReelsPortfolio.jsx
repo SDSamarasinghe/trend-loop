@@ -7,17 +7,69 @@ const ReelCard = ({ reel }) => {
   const [isMuted, setIsMuted] = React.useState(true);
   const [isHovered, setIsHovered] = React.useState(false);
   const [hasError, setHasError] = React.useState(false);
+  const [currentSrc, setCurrentSrc] = React.useState('');
+  const [sourceCandidates, setSourceCandidates] = React.useState([]);
+  const [candidateIndex, setCandidateIndex] = React.useState(0);
+
+  // Map category names to folder paths in /public/videos
+  const categoryFolderMap = {
+    'Automotive': 'automotive',
+    // Primary: BTS, fallback will try Real Estate folder too
+    'Real Estate': 'BTS',
+    'Saloon & Barber': 'saloon & barber',
+    'Restaurant': 'Restaurants',
+    'Lifestyle': 'Lifestyle',
+    'Cinematic': 'cinematic',
+  };
+
+  // Initialize source candidates from provided reel.video or inferred paths
+  useEffect(() => {
+    const folder = categoryFolderMap[reel.category] || '';
+    const baseName = reel.fileName || `reel-${reel.id}`;
+
+    const candidates = [];
+    if (reel.video) candidates.push(reel.video);
+    if (folder) {
+      // Common extensions to try
+      ['.mp4', '.mov', '.webm'].forEach(ext => {
+        const encFolder = encodeURIComponent(folder);
+        const encBase = encodeURIComponent(baseName);
+        candidates.push(`/videos/${encFolder}/${encBase}${ext}`);
+      });
+      // Restaurant Pending subfolder
+      if (reel.category === 'Restaurant') {
+        ['.mp4', '.mov', '.webm'].forEach(ext => {
+          const encBase = encodeURIComponent(baseName);
+          candidates.push(`/videos/${encodeURIComponent('Restaurants')}/Pending/${encBase}${ext}`);
+        });
+      }
+      // Real Estate explicit folder fallback
+      if (reel.category === 'Real Estate') {
+        ['.mp4', '.mov', '.webm'].forEach(ext => {
+          const encFolder = encodeURIComponent('Real Estate');
+          const encBase = encodeURIComponent(baseName);
+          candidates.push(`/videos/${encFolder}/${encBase}${ext}`);
+        });
+      }
+    }
+
+    setSourceCandidates(candidates);
+    setCandidateIndex(0);
+    setCurrentSrc(candidates[0] || '');
+  }, [reel]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasError) {
-            videoRef.current?.play().catch(() => {
+          if (entry.isIntersecting && !hasError && videoRef.current) {
+            // Attempt autoplay when video is in viewport
+            videoRef.current.play().catch((err) => {
+              console.log('Autoplay prevented:', err);
               // Silently handle autoplay errors
             });
-          } else {
-            videoRef.current?.pause();
+          } else if (videoRef.current) {
+            videoRef.current.pause();
           }
         });
       },
@@ -33,7 +85,7 @@ const ReelCard = ({ reel }) => {
         observer.unobserve(videoRef.current);
       }
     };
-  }, [hasError]);
+  }, [hasError, currentSrc]); // Re-observe when source changes
 
   const toggleMute = (e) => {
     e.stopPropagation();
@@ -44,6 +96,13 @@ const ReelCard = ({ reel }) => {
   };
 
   const handleVideoError = () => {
+    // Try next candidate if available
+    const nextIndex = candidateIndex + 1;
+    if (sourceCandidates[nextIndex]) {
+      setCandidateIndex(nextIndex);
+      setCurrentSrc(sourceCandidates[nextIndex]);
+      return;
+    }
     setHasError(true);
   };
 
@@ -54,16 +113,25 @@ const ReelCard = ({ reel }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {!hasError && reel.video ? (
+      {!hasError && currentSrc ? (
         <video
           ref={videoRef}
-          src={reel.video}
+          src={currentSrc}
           className="absolute inset-0 w-full h-full object-cover"
           loop
           muted={isMuted}
           playsInline
-          preload="metadata"
+          preload="auto"
+          autoPlay
           onError={handleVideoError}
+          onLoadedData={() => {
+            // Try autoplay when video loads
+            if (videoRef.current) {
+              videoRef.current.play().catch((err) => {
+                console.log('Autoplay on load prevented:', err);
+              });
+            }
+          }}
         />
       ) : reel.thumbnail ? (
         <img
@@ -86,7 +154,7 @@ const ReelCard = ({ reel }) => {
       <div className={`absolute inset-0 flex flex-col justify-between p-5 transition-opacity duration-300 ${
         isHovered ? 'opacity-100' : 'opacity-0'
       }`}>
-        {!hasError && reel.video && (
+        {!hasError && currentSrc && (
           <div className="flex justify-end">
             <button
               onClick={toggleMute}
