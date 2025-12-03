@@ -144,52 +144,110 @@ const AboutUs = () => {
           </p>
         </div>
 
-        {/* Two-column layout: phone left, bento cards right (desktop/tablet) */}
-        <div ref={sectionRef} className="relative max-w-7xl mx-auto mb-24 md:grid md:grid-cols-[400px_1fr] md:gap-8 lg:gap-12 items-center px-4">
-          <div
-            className={`relative z-10 transition-all duration-800 flex justify-center md:justify-center ${
-              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
-            }`}
-            style={{ transitionDelay: '250ms' }}
-          >
-            <SinglePhoneMockup />
+        {/* Three-column layout: cards left, phone center, cards right (desktop/tablet) */}
+        <div ref={sectionRef} className="relative max-w-7xl mx-auto mb-24 px-4">
+          <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:gap-6 lg:gap-8 items-start">
+            {/* Left cards (first two stats) */}
+            <div className="grid grid-cols-1 gap-4 lg:gap-5 justify-end">
+              {stats.slice(0, 2).map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className={`bg-white/95 backdrop-blur-xl rounded-[20px] p-5 lg:p-6 shadow-lg border border-gray-100/60 group transition-all duration-500 hover:shadow-2xl hover:scale-[1.05] hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:border-[#FF9933] flex flex-col justify-between min-h-[130px] ${index === 0 ? 'mt-0 animate-float' : 'mb-0 animate-float-delayed'}`}
+                    style={{
+                      transitionDelay: `${index * 100}ms`,
+                      animation: isVisible ? `slideInFromLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 150}ms both` : undefined,
+                      marginBottom: index === 1 ? '-40px' : undefined,
+                      marginTop: index === 1 ? '150px' : index === 0 ? '60px' : undefined,
+                    }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF9933]/10 to-[#FF9933]/5 group-hover:bg-white/20 transition-all duration-500 shadow-sm flex-shrink-0">
+                        <Icon className="w-6 h-6 text-[#FF9933] group-hover:text-white transition-all duration-500" strokeWidth={2.5} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-1.5 group-hover:text-white group-hover:bg-none transition-all duration-500">
+                          <CounterNumber targetValue={stat.value} isVisible={isVisible} />
+                        </div>
+                        <div className="text-sm font-semibold text-gray-700 leading-tight group-hover:text-white/95 transition-colors duration-500">
+                          {stat.label}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 mt-3 pt-2.5 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white transition-colors animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 transition-colors animate-pulse" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 transition-colors animate-pulse" style={{ animationDelay: '300ms' }} />
+                      <span className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1">Live</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Center phone mockup */}
+            <div
+              className={`relative z-10 transition-all duration-1000 flex justify-center self-start ${
+                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-90'
+              }`}
+              style={{ transitionDelay: '200ms' }}
+            >
+              <div className="animate-float">
+                <SinglePhoneMockup />
+              </div>
+            </div>
+
+            {/* Right cards (last two stats) */}
+            <div className="grid grid-cols-1 gap-4 lg:gap-5">
+              {stats.slice(2, 4).map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={index + 2}
+                    className={`bg-white/95 backdrop-blur-xl rounded-[20px] p-5 lg:p-6 shadow-lg border border-gray-100/60 group transition-all duration-500 hover:shadow-2xl hover:scale-[1.05] hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:border-[#FF9933] flex flex-col justify-between min-h-[130px] ${index === 0 ? 'mt-0 animate-float' : 'mb-0 animate-float-delayed'}`}
+                    style={{
+                      transitionDelay: `${index * 100}ms`,
+                      animation: isVisible ? `slideInFromRight 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 150}ms both` : undefined,
+                      marginBottom: index === 1 ? '-40px' : undefined,
+                      marginTop: index === 1 ? '150px' : index === 0 ? '60px' : undefined,
+                    }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF9933]/10 to-[#FF9933]/5 group-hover:bg-white/20 transition-all duration-500 shadow-sm flex-shrink-0">
+                        <Icon className="w-6 h-6 text-[#FF9933] group-hover:text-white transition-all duration-500" strokeWidth={2.5} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-1.5 group-hover:text-white group-hover:bg-none transition-all duration-500">
+                          <CounterNumber targetValue={stat.value} isVisible={isVisible} />
+                        </div>
+                        <div className="text-sm font-semibold text-gray-700 leading-tight group-hover:text-white/95 transition-colors duration-500">
+                          {stat.label}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 mt-3 pt-2.5 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white transition-colors animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 transition-colors animate-pulse" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 transition-colors animate-pulse" style={{ animationDelay: '300ms' }} />
+                      <span className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1">Live</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Bento grid cards on the right */}
-          <div className="hidden md:grid grid-cols-2 gap-4 lg:gap-5">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={index}
-                  className={`bg-white/95 backdrop-blur-xl rounded-[20px] p-6 lg:p-7 shadow-lg border border-gray-100/60 group transition-all duration-500 hover:shadow-xl hover:scale-[1.02] hover:bg-gradient-to-br hover:from-[#FF9933] hover:to-[#FF7700] hover:border-[#FF9933] flex flex-col justify-between min-h-[160px]`}
-                  style={{
-                    transitionDelay: `${280 + index * 140}ms`,
-                    animation: isVisible ? `modernSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${320 + index * 180}ms both` : undefined,
-                  }}
-                >
-                  <div className="flex items-start gap-3.5">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#FF9933]/10 to-[#FF9933]/5 group-hover:bg-white/20 transition-all duration-500 shadow-sm flex-shrink-0">
-                      <Icon className="w-7 h-7 text-[#FF9933] group-hover:text-white transition-all duration-500" strokeWidth={2.5} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-br from-[#FF9933] to-[#FF7700] bg-clip-text text-transparent leading-none mb-2 group-hover:text-white group-hover:bg-none transition-all duration-500">
-                        <CounterNumber targetValue={stat.value} isVisible={isVisible} />
-                      </div>
-                      <div className="text-sm lg:text-base font-semibold text-gray-700 leading-tight group-hover:text-white/95 transition-colors duration-500">
-                        {stat.label}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-4 pt-3 border-t border-gray-100 group-hover:border-white/30 transition-colors duration-500">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933] group-hover:bg-white transition-colors animate-pulse" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/60 group-hover:bg-white/80 transition-colors animate-pulse" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]/30 group-hover:bg-white/60 transition-colors animate-pulse" style={{ animationDelay: '300ms' }} />
-                    <span className="text-[10px] font-medium text-gray-400 group-hover:text-white/90 uppercase tracking-wider ml-1">Live</span>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Mobile: Phone first, then cards below */}
+          <div className="md:hidden flex flex-col items-center gap-6">
+            <div
+              className={`relative z-10 transition-all duration-800 ${
+                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+              }`}
+              style={{ transitionDelay: '250ms' }}
+            >
+              <SinglePhoneMockup />
+            </div>
           </div>
         </div>
 
@@ -244,14 +302,53 @@ const AboutUs = () => {
             transform: scale(1) translateY(0);
           }
         }
+
+        @keyframes slideInFromLeft {
+          0% {
+            opacity: 0;
+            transform: translateX(-60px) scale(0.85) rotateY(20deg);
+          }
+          60% {
+            opacity: 1;
+            transform: translateX(5px) scale(1.03) rotateY(-2deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0) scale(1) rotateY(0);
+          }
+        }
+
+        @keyframes slideInFromRight {
+          0% {
+            opacity: 0;
+            transform: translateX(60px) scale(0.85) rotateY(-20deg);
+          }
+          60% {
+            opacity: 1;
+            transform: translateX(-5px) scale(1.03) rotateY(2deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0) scale(1) rotateY(0);
+          }
+        }
         
         @keyframes float {
           0%, 100% {
             transform: translateY(0px);
           }
           50% {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
           }
+        }
+
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+          animation: float 4s ease-in-out infinite;
+          animation-delay: 1s;
         }
         
         @keyframes glow {
