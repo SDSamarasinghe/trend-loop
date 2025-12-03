@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
 
-const GOOGLE_CALENDAR_URL = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1sP_sP7vtvrzNttgCdHL50B5ricwv1ZaEC9fKmm_kPpDP1pLwwzCpn3fBWFd5N45H8pSA5kOEl";
+const GOOGLE_CALENDAR_URL = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3njp84SsRpT8np16l2IKqMdCzS2xM1dsLpu6SUJXkTAxCg2TnUK9pDM3QCnDGR10m6s5v96a-Q";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
