@@ -87,11 +87,28 @@ function BrandLogoMarquee() {
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const backgroundImages = [
+    '/images/webland%20artboard.png',
+    '/images/webland%20artboard%202.png',
+    '/images/weblandartboard3.png'
+  ];
 
   useEffect(() => {
-    const img = new Image();
-    img.src = '/images/webland%20artboard.png';
-    img.onload = () => setImageLoaded(true);
+    // Preload both images
+    backgroundImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    setImageLoaded(true);
+
+    // Change background image every 5 seconds
+    const interval = setInterval(() => {
+      setCurrentImageIndex(prev => (prev + 1) % backgroundImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -103,14 +120,19 @@ const Hero = () => {
           className={`absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-50 to-[#FFFBF0] transition-opacity duration-700 ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}
         />
         
-        {/* Background Image */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${imageLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
-          style={{
-            backgroundImage: 'url(/images/webland%20artboard.png)',
-            filter: 'grayscale(100%)',
-          }}
-        />
+        {/* Background Images with Crossfade */}
+        {backgroundImages.map((image, index) => (
+          <div
+            key={image}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${
+              index === currentImageIndex ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
+            }`}
+            style={{
+              backgroundImage: `url(${image})`,
+              filter: 'grayscale(100%)',
+            }}
+          />
+        ))}
         
         {/* Multi-layer Gradient Overlays for Professional Look */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/30 to-[#FFFBF0]/20"></div>
