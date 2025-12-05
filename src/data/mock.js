@@ -206,83 +206,178 @@ export const footerLinks = {
 // Categories: Automotive, Real Estate, Saloon & Barber, Restaurant, Lifestyle, Cinematic
 // Note: Replace these placeholder videos with your actual reel videos
 export const reelsPortfolio = [
+  // Automotive
   {
     id: 1,
+    title: 'Avaic Auto Care',
+    category: 'Automotive',
+    fileName: 'avaic auto care'
+  },
+  {
+    id: 2,
+    title: 'Aviac Auto Care 2',
+    category: 'Automotive',
+    fileName: 'aviac auto care 2'
+  },
+  {
+    id: 3,
+    title: 'Outlander',
+    category: 'Automotive',
+    fileName: 'avic auto care - Outlander'
+  },
+  {
+    id: 4,
+    title: 'Auto Showcase',
+    category: 'Automotive',
+    fileName: 'Comp 1_2'
+  },
+  {
+    id: 5,
+    title: 'Auto Care Ad',
+    category: 'Automotive',
+    fileName: 'Copy of avic auto care ad 02'
+  },
+  {
+    id: 6,
+    title: 'Automotive Reel',
+    category: 'Automotive',
+    fileName: 'reel 04'
+  },
+  
+  // Restaurant
+  {
+    id: 7,
+    title: 'Restaurant Experience',
+    category: 'Restaurant',
+    fileName: 'reel 01'
+  },
+  {
+    id: 8,
+    title: 'Fine Dining',
+    category: 'Restaurant',
+    fileName: 'REEL 02'
+  },
+  {
+    id: 9,
+    title: 'Restaurant Showcase',
+    category: 'Restaurant',
+    fileName: 'reel 06'
+  },
+  {
+    id: 10,
+    title: 'Dining Moments',
+    category: 'Restaurant',
+    fileName: 'reel 07 '
+  },
+  
+  // Real Estate (BTS folder)
+  {
+    id: 11,
     title: 'Budget in Barrie',
     thumbnail: '/images/budget-in-barry.jpeg',
     category: 'Real Estate',
     fileName: 'kites image vayanga'
   },
   {
-    id: 2,
-    title: 'Home Buyer Programs',
-    thumbnail: '/images/home-buyer-programms.jpeg',
-    category: 'Real Estate',
-    fileName: 'Wedding recap'
-  },
-  {
-    id: 3,
+    id: 12,
     title: 'Real Estate Investment',
     thumbnail: '/images/invest-real-state.jpeg',
     category: 'Real Estate',
     fileName: 'Kushmin BTS'
   },
   {
-    id: 4,
-    title: 'Realtor Journey',
-    thumbnail: '/images/realtor-journey.jpeg',
-    category: 'Lifestyle',
-    fileName: 'shaurya reel 07'
-  },
-  {
-    id: 5,
+    id: 13,
     title: 'Dream Home',
     thumbnail: '/images/dream-home.jpeg',
     category: 'Real Estate',
     fileName: 'maternity shoot'
   },
   {
-    id: 6,
+    id: 14,
     title: 'North Bay Investment',
     thumbnail: '/images/North-bay.jpeg',
     category: 'Real Estate',
     fileName: 'Torque & trim BTS (1)'
   },
   {
-    id: 7,
-    title: 'Automotive Showcase',
-    category: 'Automotive',
-    fileName: 'avaic auto care'
+    id: 15,
+    title: 'Music Video',
+    category: 'Real Estate',
+    fileName: 'vayanga music video'
   },
   {
-    id: 8,
-    title: 'Barber Shop Vibes',
-    category: 'Saloon & Barber',
-    fileName: 'Copy of Torque & trim reel 01 final'
+    id: 16,
+    title: 'Home Buyer Programs',
+    thumbnail: '/images/home-buyer-programms.jpeg',
+    category: 'Real Estate',
+    fileName: 'Wedding recap'
   },
+  
+  // Cinematic
   {
-    id: 9,
-    title: 'Restaurant Experience',
-    category: 'Restaurant',
-    fileName: 'reel 01'
-  },
-  {
-    id: 10,
+    id: 17,
     title: 'Cinematic Story',
     category: 'Cinematic',
     fileName: 'Copy of Torque & trim reel 03 final'
   },
   {
-    id: 11,
+    id: 18,
+    title: 'Car BTS',
+    category: 'Cinematic',
+    fileName: 'kts car bts'
+  },
+  {
+    id: 19,
+    title: 'Sony Reel',
+    category: 'Cinematic',
+    fileName: 'sony reel'
+  },
+  
+  // Lifestyle
+  {
+    id: 20,
+    title: 'Realtor Journey',
+    thumbnail: '/images/realtor-journey.jpeg',
+    category: 'Lifestyle',
+    fileName: 'shaurya reel 07'
+  },
+  {
+    id: 21,
     title: 'Lifestyle Moments',
     category: 'Lifestyle',
     fileName: 'sneh bts'
   },
   {
-    id: 12,
-    title: 'Fine Dining',
-    category: 'Restaurant',
-    fileName: 'REEL 02'
+    id: 22,
+    title: 'Trim BTS',
+    category: 'Lifestyle',
+    fileName: 'Torque & trim BTS'
+  },
+  
+  // Saloon & Barber
+  {
+    id: 23,
+    title: 'Barber Shop Vibes',
+    category: 'Saloon & Barber',
+    fileName: 'Copy of Torque & trim reel 01 final'
+  },
+  {
+    id: 24,
+    title: 'Barber Experience',
+    category: 'Saloon & Barber',
+    fileName: 'Copy of Torque & trim reel 03 final'
+  },
+  {
+    id: 25,
+    title: 'Grooming Style',
+    category: 'Saloon & Barber',
+    fileName: 'Copy of Torque & trim reel 07'
+  },
+  {
+    id: 26,
+    title: 'Salon Showcase',
+    category: 'Saloon & Barber',
+    fileName: 'Copy of torque & trim reel 13'
   }
 ];
 
