@@ -18,7 +18,6 @@ const ReelCard = ({ reel, isVisible = false }) => {
   // Map category names to folder paths in /public/videos
   const categoryFolderMap = {
     'Automotive': 'automotive',
-    // Primary: BTS, fallback will try Real Estate folder too
     'Real Estate': 'BTS',
     'Saloon & Barber': 'saloon & barber',
     'Restaurant': 'Restaurants',
@@ -54,14 +53,6 @@ const ReelCard = ({ reel, isVisible = false }) => {
         ['.mp4', '.webm', '.mov'].forEach(ext => {
           const encBase = encodeURIComponent(baseName);
           candidates.push(`/videos/${encodeURIComponent('Restaurants')}/Pending/${encBase}${ext}`);
-        });
-      }
-      // Real Estate explicit folder fallback
-      if (reel.category === 'Real Estate') {
-        ['.mp4', '.webm', '.mov'].forEach(ext => {
-          const encFolder = encodeURIComponent('Real Estate');
-          const encBase = encodeURIComponent(baseName);
-          candidates.push(`/videos/${encFolder}/${encBase}${ext}`);
         });
       }
     }
