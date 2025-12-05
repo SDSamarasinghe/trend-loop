@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+
 import Header from './components/Header';
 import Hero from './components/Hero';
 import AboutUs from './components/AboutUs';
@@ -12,10 +13,12 @@ import Testimonials from './components/Testimonials';
 import ReelsPortfolio from './components/ReelsPortfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import SocialSidebar from './components/SocialSidebar';
 
 function App() {
   return (
     <div className="App">
+      <SocialSidebar />
       <Header />
       <Hero />
       <AboutUs />
