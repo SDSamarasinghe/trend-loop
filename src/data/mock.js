@@ -180,25 +180,17 @@ export const footerLinks = {
   product: [
     { name: 'Features', link: '#features' },
     { name: 'Pricing', link: '#pricing' },
-    { name: 'Security', link: '#security' },
-    { name: 'Roadmap', link: '#roadmap' }
   ],
   resources: [
-    { name: 'Documentation', link: '#docs' },
-    { name: 'API Reference', link: '#api' },
-    { name: 'Guides', link: '#guides' },
     { name: 'Blog', link: '#blog' }
   ],
   company: [
     { name: 'About', link: '#about' },
-    { name: 'Careers', link: '#careers' },
     { name: 'Contact', link: '#contact' },
-    { name: 'Partners', link: '#partners' }
   ],
   legal: [
     { name: 'Privacy', link: '#privacy' },
     { name: 'Terms', link: '#terms' },
-    { name: 'Cookie Policy', link: '#cookies' }
   ]
 };
 
