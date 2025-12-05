@@ -38,7 +38,7 @@ const Footer = () => {
 
           {/* Links Columns */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Product</h3>
+            <h3 className="font-semibold text-lg text-white">Product</h3>
             <ul className="space-y-2">
                 {footerLinks.product.map((link, index) => (
                   <li key={index}>
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Resources</h3>
+            <h3 className="font-semibold text-lg text-white">Resources</h3>
             <ul className="space-y-2">
                 {footerLinks.resources.map((link, index) => (
                   <li key={index}>
@@ -64,7 +64,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Company</h3>
+            <h3 className="font-semibold text-lg text-white">Company</h3>
             <ul className="space-y-2">
                 {footerLinks.company.map((link, index) => (
                   <li key={index}>
@@ -76,8 +76,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Legal</h3>
+          {/* <div className="space-y-4">
+            <h3 className="font-semibold text-lg text-white">Legal</h3>
             <ul className="space-y-2">
                 {footerLinks.legal.map((link, index) => (
                   <li key={index}>
@@ -87,7 +87,7 @@ const Footer = () => {
                   </li>
                 ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Bar */}
