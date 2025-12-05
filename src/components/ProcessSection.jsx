@@ -134,9 +134,7 @@ const ProcessStep = ({ step, index }) => {
 const ProcessSection = () => {
   return (
     <section className="py-16 md:py-20 px-6 bg-gradient-to-b from-white/80 to-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FF9933]/10 rounded-full blur-3xl"></div>
+
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
