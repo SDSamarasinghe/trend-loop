@@ -2,7 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import { Play, Volume2, VolumeX } from 'lucide-react';
 import { reelsPortfolio } from '../data/mock';
 
-const ReelCard = ({ reel }) => {
+// Cache for working video sources
+const videoSourceCache = new Map();
+
+const ReelCard = ({ reel, isVisible = false }) => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = React.useState(true);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -10,6 +13,7 @@ const ReelCard = ({ reel }) => {
   const [currentSrc, setCurrentSrc] = React.useState('');
   const [sourceCandidates, setSourceCandidates] = React.useState([]);
   const [candidateIndex, setCandidateIndex] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   // Map category names to folder paths in /public/videos
   const categoryFolderMap = {
@@ -24,28 +28,37 @@ const ReelCard = ({ reel }) => {
 
   // Initialize source candidates from provided reel.video or inferred paths
   useEffect(() => {
+    const cacheKey = `${reel.category}-${reel.fileName}`;
+    
+    // Check if we already have a working source cached
+    if (videoSourceCache.has(cacheKey)) {
+      setCurrentSrc(videoSourceCache.get(cacheKey));
+      setSourceCandidates([videoSourceCache.get(cacheKey)]);
+      return;
+    }
+
     const folder = categoryFolderMap[reel.category] || '';
     const baseName = reel.fileName || `reel-${reel.id}`;
 
     const candidates = [];
     if (reel.video) candidates.push(reel.video);
     if (folder) {
-      // Common extensions to try
-      ['.mp4', '.mov', '.webm'].forEach(ext => {
+      // Common extensions to try - prioritize mp4
+      ['.mp4', '.webm', '.mov'].forEach(ext => {
         const encFolder = encodeURIComponent(folder);
         const encBase = encodeURIComponent(baseName);
         candidates.push(`/videos/${encFolder}/${encBase}${ext}`);
       });
       // Restaurant Pending subfolder
       if (reel.category === 'Restaurant') {
-        ['.mp4', '.mov', '.webm'].forEach(ext => {
+        ['.mp4', '.webm', '.mov'].forEach(ext => {
           const encBase = encodeURIComponent(baseName);
           candidates.push(`/videos/${encodeURIComponent('Restaurants')}/Pending/${encBase}${ext}`);
         });
       }
       // Real Estate explicit folder fallback
       if (reel.category === 'Real Estate') {
-        ['.mp4', '.mov', '.webm'].forEach(ext => {
+        ['.mp4', '.webm', '.mov'].forEach(ext => {
           const encFolder = encodeURIComponent('Real Estate');
           const encBase = encodeURIComponent(baseName);
           candidates.push(`/videos/${encFolder}/${encBase}${ext}`);
@@ -55,25 +68,31 @@ const ReelCard = ({ reel }) => {
 
     setSourceCandidates(candidates);
     setCandidateIndex(0);
-    setCurrentSrc(candidates[0] || '');
-  }, [reel]);
+    // Start with first candidate immediately if visible
+    if (candidates.length > 0 && isVisible) {
+      setCurrentSrc(candidates[0]);
+    }
+  }, [reel, isVisible]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasError && videoRef.current) {
+          if (entry.isIntersecting && !hasError && videoRef.current && sourceCandidates.length > 0) {
+            // Set source if not already set
+            if (!currentSrc && sourceCandidates[0]) {
+              setCurrentSrc(sourceCandidates[0]);
+            }
             // Attempt autoplay when video is in viewport
             videoRef.current.play().catch((err) => {
               console.log('Autoplay prevented:', err);
-              // Silently handle autoplay errors
             });
           } else if (videoRef.current) {
             videoRef.current.pause();
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (videoRef.current) {
@@ -85,7 +104,7 @@ const ReelCard = ({ reel }) => {
         observer.unobserve(videoRef.current);
       }
     };
-  }, [hasError, currentSrc]); // Re-observe when source changes
+  }, [hasError, currentSrc, sourceCandidates]);
 
   const toggleMute = (e) => {
     e.stopPropagation();
@@ -106,6 +125,15 @@ const ReelCard = ({ reel }) => {
     setHasError(true);
   };
 
+  const handleVideoCanPlay = () => {
+    setIsLoading(false);
+    // Cache this working source
+    const cacheKey = `${reel.category}-${reel.fileName}`;
+    if (currentSrc && !videoSourceCache.has(cacheKey)) {
+      videoSourceCache.set(cacheKey, currentSrc);
+    }
+  };
+
   return (
     <div
       className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
@@ -121,11 +149,12 @@ const ReelCard = ({ reel }) => {
           loop
           muted={isMuted}
           playsInline
-          preload="auto"
+          preload="metadata"
           autoPlay
           onError={handleVideoError}
+          onCanPlay={handleVideoCanPlay}
           onLoadedData={() => {
-            // Try autoplay when video loads
+            setIsLoading(false);
             if (videoRef.current) {
               videoRef.current.play().catch((err) => {
                 console.log('Autoplay on load prevented:', err);
@@ -186,6 +215,7 @@ const ReelCard = ({ reel }) => {
 
 const ReelsPortfolio = () => {
   const [selectedCategory, setSelectedCategory] = React.useState('All');
+  const [visibleReels, setVisibleReels] = React.useState(new Set());
 
   const categories = [
     'All',
@@ -200,6 +230,31 @@ const ReelsPortfolio = () => {
   const filteredReels = selectedCategory === 'All'
     ? reelsPortfolio
     : reelsPortfolio.filter(reel => reel.category === selectedCategory);
+
+  // Intersection observer for preloading
+  useEffect(() => {
+    const gridContainer = document.querySelector('[data-reel-grid]');
+    if (!gridContainer) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const reelId = entry.target.getAttribute('data-reel-id');
+            setVisibleReels((prev) => new Set(prev).add(reelId));
+          }
+        });
+      },
+      { rootMargin: '200px', threshold: 0 }
+    );
+
+    const reelElements = gridContainer.querySelectorAll('[data-reel-id]');
+    reelElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      reelElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [filteredReels]);
 
   return (
     <section id="work" className="py-24 px-6 bg-gradient-to-b from-white to-[#FFFBF0]">
@@ -232,9 +287,11 @@ const ReelsPortfolio = () => {
         </div>
 
         {/* Reels Grid - Clean 9:16 Format */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6" data-reel-grid>
           {filteredReels.map((reel) => (
-            <ReelCard key={reel.id} reel={reel} />
+            <div key={reel.id} data-reel-id={reel.id}>
+              <ReelCard reel={reel} isVisible={visibleReels.has(String(reel.id))} />
+            </div>
           ))}
         </div>
 
