@@ -1,6 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { ourServices } from '../data/mock';
+
+// Animated text component for service descriptions with fade and slide effect
+const AnimatedText = ({ text, isActive }) => {
+  const words = text.split(' ');
+  
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.08,
+        delayChildren: 0.1
+      },
+    },
+  };
+  
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 150,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 30,
+      x: -10,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 150,
+      },
+    },
+  };
+  
+  return (
+    <motion.span
+      style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.3em' }}
+      variants={container}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      key={text}
+    >
+      {words.map((word, index) => (
+        <motion.span
+          variants={child}
+          key={index}
+          style={{ display: 'inline-block' }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
 
 const ServicesSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,7 +149,7 @@ const ServicesSlider = () => {
                           {service.title}
                         </h3>
                         <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                          {service.description}
+                          <AnimatedText text={service.description} isActive={isActive} />
                         </p>
                         <button className="bg-[#FF9933] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#E68A2E] transition-all hover:shadow-xl w-fit">
                           Learn More
