@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Heart, MessageCircle, Send, ThumbsUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import { heroTestimonials } from '../data/mock';
 import { GridPattern } from './ui/shadcn-io/grid-pattern';
@@ -15,6 +16,59 @@ const brandLogos = [
   { src: 'https://www.ironfx.com/favicon.ico', alt: 'IronFX' },
   // Add more brand favicons as needed
 ];
+
+// Animated text component for "simplified"
+const AnimatedText = ({ text }) => {
+  const letters = text.split('');
+  
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.05, delayChildren: 0.3 * i },
+    }),
+  };
+  
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+  
+  return (
+    <motion.span
+      style={{ display: 'inline-flex', overflow: 'hidden' }}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {letters.map((letter, index) => (
+        <motion.span
+          variants={child}
+          key={index}
+          style={{ display: 'inline-block' }}
+        >
+          {letter === ' ' ? '\u00A0' : letter}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
 
 function BrandLogoMarquee() {
   return (
@@ -204,7 +258,9 @@ style={{ transform: 'translateY(0.10em)' }}
     <br />
     Your marketing,
     <br />
-    <span className="text-[#FF9933]">simplified</span>
+    <span className="text-[#FF9933]">
+      <AnimatedText text="simplified" />
+    </span>
   </h1>
 
   <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in stagger-2 px-4">
