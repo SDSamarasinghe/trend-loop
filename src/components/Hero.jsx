@@ -259,7 +259,7 @@ style={{ transform: 'translateY(0.10em)' }}
     Your marketing,
     <br />
     <span className="text-[#FF9933]">
-      <AnimatedText text="simplified" />
+      simplified
     </span>
   </h1>
 
