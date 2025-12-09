@@ -198,39 +198,63 @@ export const footerLinks = {
 // Categories: Automotive, Real Estate, Saloon & Barber, Restaurant, Lifestyle, Cinematic
 // Note: Replace these placeholder videos with your actual reel videos
 export const reelsPortfolio = [
-  // Automotive
+  // Real Estate (Top Priority)
   {
     id: 1,
-    title: 'Avaic Auto Care',
-    category: 'Automotive',
-    fileName: 'avaic auto care'
+    title: 'Derick Real Estate',
+    category: 'Real Estate',
+    fileName: 'derick real estate'
   },
   {
     id: 2,
-    title: 'Aviac Auto Care 2',
-    category: 'Automotive',
-    fileName: 'aviac auto care 2'
+    title: 'Fortune Gate',
+    category: 'Real Estate',
+    fileName: 'fortune gate'
   },
   {
     id: 3,
+    title: 'Shaurya Real Estate',
+    category: 'Real Estate',
+    fileName: 'shaurya reel 04'
+  },
+
+  // Outlander (Automotive - Featured)
+  {
+    id: 4,
     title: 'Outlander',
     category: 'Automotive',
     fileName: 'avic auto care - Outlander'
   },
+
+  // Cinematic
   {
-    id: 4,
+    id: 5,
+    title: 'Cinematic Story',
+    category: 'Cinematic',
+    fileName: 'Copy of Torque & trim reel 03 final'
+  },
+  {
+    id: 6,
+    title: 'Car BTS',
+    category: 'Cinematic',
+    fileName: 'kts car bts'
+  },
+  {
+    id: 7,
+    title: 'Sony Reel',
+    category: 'Cinematic',
+    fileName: 'sony reel'
+  },
+  
+  // Automotive (Rest)
+  {
+    id: 8,
     title: 'Auto Showcase',
     category: 'Automotive',
     fileName: 'Comp 1_2'
   },
   {
-    id: 5,
-    title: 'Auto Care Ad',
-    category: 'Automotive',
-    fileName: 'Copy of avic auto care ad 02'
-  },
-  {
-    id: 6,
+    id: 9,
     title: 'Automotive Reel',
     category: 'Automotive',
     fileName: 'reel 04'
@@ -238,25 +262,25 @@ export const reelsPortfolio = [
   
   // Restaurant
   {
-    id: 7,
+    id: 10,
     title: 'Restaurant Experience',
     category: 'Restaurant',
     fileName: 'reel 01'
   },
   {
-    id: 8,
+    id: 11,
     title: 'Fine Dining',
     category: 'Restaurant',
     fileName: 'REEL 02'
   },
   {
-    id: 9,
+    id: 12,
     title: 'Restaurant Showcase',
     category: 'Restaurant',
     fileName: 'reel 06'
   },
   {
-    id: 10,
+    id: 13,
     title: 'Dining Moments',
     category: 'Restaurant',
     fileName: 'reel 07 '
@@ -264,103 +288,63 @@ export const reelsPortfolio = [
   
   // BTS
   {
-    id: 11,
+    id: 14,
     title: 'Budget in Barrie',
     thumbnail: '/images/budget-in-barry.jpeg',
     category: 'BTS',
     fileName: 'kites image vayanga'
   },
   {
-    id: 12,
+    id: 15,
     title: 'Real Estate Investment',
     thumbnail: '/images/invest-real-state.jpeg',
     category: 'BTS',
     fileName: 'Kushmin BTS'
   },
   {
-    id: 13,
+    id: 16,
     title: 'Dream Home',
     thumbnail: '/images/dream-home.jpeg',
     category: 'BTS',
     fileName: 'maternity shoot'
   },
   {
-    id: 14,
+    id: 17,
     title: 'North Bay Investment',
     thumbnail: '/images/North-bay.jpeg',
     category: 'BTS',
     fileName: 'Torque & trim BTS (1)'
   },
   {
-    id: 15,
+    id: 18,
     title: 'Music Video',
     category: 'BTS',
     fileName: 'vayanga music video'
   },
   {
-    id: 16,
+    id: 19,
     title: 'Home Buyer Programs',
     thumbnail: '/images/home-buyer-programms.jpeg',
     category: 'BTS',
     fileName: 'Wedding recap'
   },
-
-  // Real Estate
-  {
-    id: 17,
-    title: 'Derick Real Estate',
-    category: 'Real Estate',
-    fileName: 'derick real estate'
-  },
-  {
-    id: 18,
-    title: 'Fortune Gate',
-    category: 'Real Estate',
-    fileName: 'fortune gate'
-  },
-  {
-    id: 19,
-    title: 'Shaurya Real Estate',
-    category: 'Real Estate',
-    fileName: 'shaurya reel 04'
-  },
-  
-  // Cinematic
-  {
-    id: 20,
-    title: 'Cinematic Story',
-    category: 'Cinematic',
-    fileName: 'Copy of Torque & trim reel 03 final'
-  },
-  {
-    id: 21,
-    title: 'Car BTS',
-    category: 'Cinematic',
-    fileName: 'kts car bts'
-  },
-  {
-    id: 22,
-    title: 'Sony Reel',
-    category: 'Cinematic',
-    fileName: 'sony reel'
-  },
   
   // Lifestyle
   {
-    id: 23,
+    id: 20,
     title: 'Realtor Journey',
     thumbnail: '/images/realtor-journey.jpeg',
     category: 'Lifestyle',
     fileName: 'shaurya reel 07'
   },
   {
-    id: 24,
+    id: 21,
     title: 'Lifestyle Moments',
     category: 'Lifestyle',
     fileName: 'sneh bts'
   },
   {
-    id: 25,
+    id: 22,
     title: 'Trim BTS',
     category: 'Lifestyle',
     fileName: 'Torque & trim BTS'
@@ -368,28 +352,48 @@ export const reelsPortfolio = [
   
   // Saloon & Barber
   {
-    id: 26,
+    id: 23,
     title: 'Barber Shop Vibes',
     category: 'Saloon & Barber',
     fileName: 'Copy of Torque & trim reel 01 final'
   },
   {
-    id: 27,
+    id: 24,
     title: 'Barber Experience',
     category: 'Saloon & Barber',
     fileName: 'Copy of Torque & trim reel 03 final'
   },
   {
-    id: 28,
+    id: 25,
     title: 'Grooming Style',
     category: 'Saloon & Barber',
     fileName: 'Copy of Torque & trim reel 07'
   },
   {
-    id: 29,
+    id: 26,
     title: 'Salon Showcase',
     category: 'Saloon & Barber',
     fileName: 'Copy of torque & trim reel 13'
+  },
+
+  // Automotive (Moved to bottom)
+  {
+    id: 27,
+    title: 'Avaic Auto Care',
+    category: 'Automotive',
+    fileName: 'avaic auto care'
+  },
+  {
+    id: 28,
+    title: 'Aviac Auto Care 2',
+    category: 'Automotive',
+    fileName: 'aviac auto care 2'
+  },
+  {
+    id: 29,
+    title: 'Auto Care Ad',
+    category: 'Automotive',
+    fileName: 'Copy of avic auto care ad 02'
   }
 ];
 
