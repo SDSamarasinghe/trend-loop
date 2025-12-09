@@ -262,64 +262,84 @@ export const reelsPortfolio = [
     fileName: 'reel 07 '
   },
   
-  // Real Estate (BTS folder)
+  // BTS
   {
     id: 11,
     title: 'Budget in Barrie',
     thumbnail: '/images/budget-in-barry.jpeg',
-    category: 'Real Estate',
+    category: 'BTS',
     fileName: 'kites image vayanga'
   },
   {
     id: 12,
     title: 'Real Estate Investment',
     thumbnail: '/images/invest-real-state.jpeg',
-    category: 'Real Estate',
+    category: 'BTS',
     fileName: 'Kushmin BTS'
   },
   {
     id: 13,
     title: 'Dream Home',
     thumbnail: '/images/dream-home.jpeg',
-    category: 'Real Estate',
+    category: 'BTS',
     fileName: 'maternity shoot'
   },
   {
     id: 14,
     title: 'North Bay Investment',
     thumbnail: '/images/North-bay.jpeg',
-    category: 'Real Estate',
+    category: 'BTS',
     fileName: 'Torque & trim BTS (1)'
   },
   {
     id: 15,
     title: 'Music Video',
-    category: 'Real Estate',
+    category: 'BTS',
     fileName: 'vayanga music video'
   },
   {
     id: 16,
     title: 'Home Buyer Programs',
     thumbnail: '/images/home-buyer-programms.jpeg',
-    category: 'Real Estate',
+    category: 'BTS',
     fileName: 'Wedding recap'
+  },
+
+  // Real Estate
+  {
+    id: 17,
+    title: 'Derick Real Estate',
+    category: 'Real Estate',
+    fileName: 'derick real estate'
+  },
+  {
+    id: 18,
+    title: 'Fortune Gate',
+    category: 'Real Estate',
+    fileName: 'fortune gate'
+  },
+  {
+    id: 19,
+    title: 'Shaurya Real Estate',
+    category: 'Real Estate',
+    fileName: 'shaurya reel 04'
   },
   
   // Cinematic
   {
-    id: 17,
+    id: 20,
     title: 'Cinematic Story',
     category: 'Cinematic',
     fileName: 'Copy of Torque & trim reel 03 final'
   },
   {
-    id: 18,
+    id: 21,
     title: 'Car BTS',
     category: 'Cinematic',
     fileName: 'kts car bts'
   },
   {
-    id: 19,
+    id: 22,
     title: 'Sony Reel',
     category: 'Cinematic',
     fileName: 'sony reel'
@@ -327,20 +347,20 @@ export const reelsPortfolio = [
   
   // Lifestyle
   {
-    id: 20,
+    id: 23,
     title: 'Realtor Journey',
     thumbnail: '/images/realtor-journey.jpeg',
     category: 'Lifestyle',
     fileName: 'shaurya reel 07'
   },
   {
-    id: 21,
+    id: 24,
     title: 'Lifestyle Moments',
     category: 'Lifestyle',
     fileName: 'sneh bts'
   },
   {
-    id: 22,
+    id: 25,
     title: 'Trim BTS',
     category: 'Lifestyle',
     fileName: 'Torque & trim BTS'
@@ -348,25 +368,25 @@ export const reelsPortfolio = [
   
   // Saloon & Barber
   {
-    id: 23,
+    id: 26,
     title: 'Barber Shop Vibes',
     category: 'Saloon & Barber',
     fileName: 'Copy of Torque & trim reel 01 final'
   },
   {
-    id: 24,
+    id: 27,
     title: 'Barber Experience',
     category: 'Saloon & Barber',
     fileName: 'Copy of Torque & trim reel 03 final'
   },
   {
-    id: 25,
+    id: 28,
     title: 'Grooming Style',
     category: 'Saloon & Barber',
     fileName: 'Copy of Torque & trim reel 07'
   },
   {
-    id: 26,
+    id: 29,
     title: 'Salon Showcase',
     category: 'Saloon & Barber',
     fileName: 'Copy of torque & trim reel 13'

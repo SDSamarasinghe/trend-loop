@@ -18,7 +18,8 @@ const ReelCard = ({ reel, isVisible = false }) => {
   // Map category names to folder paths in /public/videos
   const categoryFolderMap = {
     'Automotive': 'automotive',
-    'Real Estate': 'BTS',
+    'BTS': 'BTS',
+    'Real Estate': 'Real estate',
     'Saloon & Barber': 'saloon & barber',
     'Restaurant': 'Restaurants',
     'Lifestyle': 'Lifestyle',
@@ -211,6 +212,7 @@ const ReelsPortfolio = () => {
   const categories = [
     'All',
     'Automotive',
+    'BTS',
     'Real Estate',
     'Saloon & Barber',
     'Restaurant',
