@@ -24,7 +24,7 @@ const Footer = () => {
               Creative marketing services to grow, engage, and convert across channels.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+              {/* <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -32,7 +32,7 @@ const Footer = () => {
               </a>
               <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                 <Linkedin className="w-5 h-5" />
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -50,18 +50,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="font-semibold text-lg text-white">Resources</h3>
-            <ul className="space-y-2">
-                {footerLinks.resources.map((link, index) => (
-                  <li key={index}>
-                    <a href={link.link} className="text-white hover:text-white transition-colors">
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-            </ul>
-          </div>
+         
 
           <div className="space-y-4">
             <h3 className="font-semibold text-lg text-white">Company</h3>
