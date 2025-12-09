@@ -18,126 +18,126 @@ const brandLogos = [
 ];
 
 // Animated text component for "simplified"
-const AnimatedText = ({ text }) => {
-  const letters = text.split('');
+// const AnimatedText = ({ text }) => {
+//   const letters = text.split('');
   
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: 0.3 * i },
-    }),
-  };
+//   const container = {
+//     hidden: { opacity: 0 },
+//     visible: (i = 1) => ({
+//       opacity: 1,
+//       transition: { staggerChildren: 0.05, delayChildren: 0.3 * i },
+//     }),
+//   };
   
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
+//   const child = {
+//     visible: {
+//       opacity: 1,
+//       y: 0,
+//       transition: {
+//         type: "spring",
+//         damping: 12,
+//         stiffness: 100,
+//       },
+//     },
+//     hidden: {
+//       opacity: 0,
+//       y: 20,
+//       transition: {
+//         type: "spring",
+//         damping: 12,
+//         stiffness: 100,
+//       },
+//     },
+//   };
   
-  return (
-    <motion.span
-      style={{ display: 'inline-flex', overflow: 'hidden' }}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      {letters.map((letter, index) => (
-        <motion.span
-          variants={child}
-          key={index}
-          style={{ display: 'inline-block' }}
-        >
-          {letter === ' ' ? '\u00A0' : letter}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-};
+//   return (
+//     <motion.span
+//       style={{ display: 'inline-flex', overflow: 'hidden' }}
+//       variants={container}
+//       initial="hidden"
+//       animate="visible"
+//     >
+//       {letters.map((letter, index) => (
+//         <motion.span
+//           variants={child}
+//           key={index}
+//           style={{ display: 'inline-block' }}
+//         >
+//           {letter === ' ' ? '\u00A0' : letter}
+//         </motion.span>
+//       ))}
+//     </motion.span>
+//   );
+// };
 
-function BrandLogoMarquee() {
-  return (
-    <div className="w-screen max-w-none bg-white py-8 overflow-hidden">
-      <div className="relative flex flex-col gap-6">
-        {/* Row 1: left to right */}
-        <div className="marquee-row flex gap-20 items-center whitespace-nowrap animate-marquee px-8">
-          {brandLogos.map((logo, idx) => (
-            <img
-              key={logo.alt + idx}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-12 w-auto object-contain"
-              style={{ minWidth: '140px', filter: 'none' }}
-            />
-          ))}
-          {/* Repeat for seamless loop */}
-          {brandLogos.map((logo, idx) => (
-            <img
-              key={logo.alt + '-repeat-' + idx}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-12 w-auto object-contain"
-              style={{ minWidth: '140px', filter: 'none' }}
-            />
-          ))}
-        </div>
-        {/* Row 2: right to left */}
-        <div className="marquee-row flex gap-20 items-center whitespace-nowrap animate-marquee-reverse mt-4 px-8">
-          {brandLogos.slice().reverse().map((logo, idx) => (
-            <img
-              key={logo.alt + '-rev-' + idx}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-12 w-auto object-contain"
-              style={{ minWidth: '140px', filter: 'none' }}
-            />
-          ))}
-          {brandLogos.slice().reverse().map((logo, idx) => (
-            <img
-              key={logo.alt + '-rev-repeat-' + idx}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-12 w-auto object-contain"
-              style={{ minWidth: '140px', filter: 'none' }}
-            />
-          ))}
-        </div>
-      </div>
-      {/* Marquee animation styles */}
-      <style>{`
-        .animate-marquee {
-          animation: marquee 28s linear infinite;
-        }
-        .animate-marquee-reverse {
-          animation: marquee-reverse 32s linear infinite;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-reverse {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(50%); }
-        }
-      `}</style>
-    </div>
-  );
-}
+// function BrandLogoMarquee() {
+//   return (
+//     <div className="w-screen max-w-none bg-white py-8 overflow-hidden">
+//       <div className="relative flex flex-col gap-6">
+//         {/* Row 1: left to right */}
+//         <div className="marquee-row flex gap-20 items-center whitespace-nowrap animate-marquee px-8">
+//           {brandLogos.map((logo, idx) => (
+//             <img
+//               key={logo.alt + idx}
+//               src={logo.src}
+//               alt={logo.alt}
+//               className="h-12 w-auto object-contain"
+//               style={{ minWidth: '140px', filter: 'none' }}
+//             />
+//           ))}
+//           {/* Repeat for seamless loop */}
+//           {brandLogos.map((logo, idx) => (
+//             <img
+//               key={logo.alt + '-repeat-' + idx}
+//               src={logo.src}
+//               alt={logo.alt}
+//               className="h-12 w-auto object-contain"
+//               style={{ minWidth: '140px', filter: 'none' }}
+//             />
+//           ))}
+//         </div>
+//         {/* Row 2: right to left */}
+//         <div className="marquee-row flex gap-20 items-center whitespace-nowrap animate-marquee-reverse mt-4 px-8">
+//           {brandLogos.slice().reverse().map((logo, idx) => (
+//             <img
+//               key={logo.alt + '-rev-' + idx}
+//               src={logo.src}
+//               alt={logo.alt}
+//               className="h-12 w-auto object-contain"
+//               style={{ minWidth: '140px', filter: 'none' }}
+//             />
+//           ))}
+//           {brandLogos.slice().reverse().map((logo, idx) => (
+//             <img
+//               key={logo.alt + '-rev-repeat-' + idx}
+//               src={logo.src}
+//               alt={logo.alt}
+//               className="h-12 w-auto object-contain"
+//               style={{ minWidth: '140px', filter: 'none' }}
+//             />
+//           ))}
+//         </div>
+//       </div>
+//       {/* Marquee animation styles */}
+//       <style>{`
+//         .animate-marquee {
+//           animation: marquee 28s linear infinite;
+//         }
+//         .animate-marquee-reverse {
+//           animation: marquee-reverse 32s linear infinite;
+//         }
+//         @keyframes marquee {
+//           0% { transform: translateX(0); }
+//           100% { transform: translateX(-50%); }
+//         }
+//         @keyframes marquee-reverse {
+//           0% { transform: translateX(0); }
+//           100% { transform: translateX(50%); }
+//         }
+//       `}</style>
+//     </div>
+//   );
+// }
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
