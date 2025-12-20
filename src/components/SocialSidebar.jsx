@@ -12,25 +12,25 @@ const socialLinks = [
   {
     icon: <Facebook className="w-5 h-5" />,
     label: 'Facebook',
-    href: 'https://facebook.com/',
+    href: 'https://www.facebook.com/share/17ybK31u9r/?mibextid=wwXIfr',
     color: 'hover:bg-[#1877F2]'
   },
   {
     icon: <Instagram className="w-5 h-5" />,
     label: 'Instagram',
-    href: 'https://instagram.com/',
+    href: 'https://www.instagram.com/trendloop.ca?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     color: 'hover:bg-[#E4405F]'
   },
   {
     icon: <TikTokIcon className="w-5 h-5" />,
     label: 'TikTok',
-    href: 'https://tiktok.com/',
+    href: 'https://www.tiktok.com/@trendloop8?_r=1&_t=ZS-925DiFyeNZS',
     color: 'hover:bg-[#000000]'
   },
   {
     icon: <Linkedin className="w-5 h-5" />,
     label: 'LinkedIn',
-    href: 'https://linkedin.com/',
+    href: 'https://www.linkedin.com/company/trendloopca/',
     color: 'hover:bg-[#0077B5]'
   }
 ];
