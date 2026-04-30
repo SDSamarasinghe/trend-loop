@@ -147,6 +147,8 @@ const Contact = () => {
         EMAILJS_ADMIN_TEMPLATE_ID,
         {
           to_email: 'trendloopinfo.ca@gmail.com',
+          name: planRequestData.name,
+          email: planRequestData.email,
           customer_name: planRequestData.name,
           customer_email: planRequestData.email,
           contact_number: planRequestData.contactNumber,
