@@ -26,3 +26,18 @@
   for = "/robots.txt"
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
+
+# ── Video Streaming Optimization ──────────────────────────────────────────
+[[headers]]
+  for = "/videos/**"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Accept-Ranges = "bytes"
+    Content-Type = "video/mp4"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/images/**"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"

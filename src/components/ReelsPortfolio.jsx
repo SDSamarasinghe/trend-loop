@@ -1,11 +1,14 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { Play, Volume2, VolumeX, Loader2 } from 'lucide-react';
+import { Play, Volume2, VolumeX, Loader2, AlertCircle } from 'lucide-react';
 import { reelsPortfolio } from '../data/mock';
 
 // ── Global caches (module-level, survive re-renders) ──────────────────────────
 const videoSourceCache = new Map();  // cacheKey → confirmed working src URL
 const activePreloads = new Set();    // cacheKeys currently being fetched
-const MAX_CONCURRENT_PRELOADS = 2;
+const failedVideoMap = new Map();    // track retry attempts per video
+const MAX_CONCURRENT_PRELOADS = 1;   // Even more aggressive for Netlify
+const LOAD_TIMEOUT_MS = 4000;        // 4 second timeout before showing error
+const RETRY_DELAY_MS = 2000;         // Exponential backoff: 2s, 4s, 8s
 
 // ── Network speed detection hook ──────────────────────────────────────────────
 function useNetworkStatus() {
@@ -34,33 +37,38 @@ function useNetworkStatus() {
 // ── ReelCard ──────────────────────────────────────────────────────────────────
 const ReelCard = ({ reel, isNearViewport = false }) => {
   const videoRef = useRef(null);
-  const cardRef  = useRef(null);
-  const retryRef = useRef(0);
+  const cardRef = useRef(null);
+  const loadTimeoutRef = useRef(null);
+  const retryTimeoutRef = useRef(null);
 
-  const [isMuted, setIsMuted]                 = React.useState(true);
-  const [isHovered, setIsHovered]             = React.useState(false);
-  const [hasError, setHasError]               = React.useState(false);
-  const [currentSrc, setCurrentSrc]           = React.useState('');
-  const [sourceCandidates, setCandidates]     = React.useState([]);
-  const [candidateIndex, setCandidateIndex]   = React.useState(0);
-  const [isLoading, setIsLoading]             = React.useState(true);
-  const [isInViewport, setIsInViewport]       = React.useState(false);
+  const [isMuted, setIsMuted] = React.useState(true);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [hasError, setHasError] = React.useState(false);
+  const [currentSrc, setCurrentSrc] = React.useState('');
+  const [sourceCandidates, setCandidates] = React.useState([]);
+  const [candidateIndex, setCandidateIndex] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isInViewport, setIsInViewport] = React.useState(false);
+  const [loadTimeout, setLoadTimeout] = React.useState(false);
+  const [posterImg, setPosterImg] = React.useState('');
 
   const { isSlowNetwork } = useNetworkStatus();
 
   const categoryFolderMap = {
-    'Automotive':    'automotive',
-    'BTS':           'BTS',
-    'Real Estate':   'Real estate',
+    'Automotive':      'automotive',
+    'BTS':             'BTS',
+    'Real Estate':     'Real estate',
     'Saloon & Barber': 'saloon & barber',
-    'Restaurant':    'Restaurants',
-    'Lifestyle':     'Lifestyle',
-    'Cinematic':     'cinematic',
+    'Restaurant':      'Restaurants',
+    'Lifestyle':       'Lifestyle',
+    'Cinematic':       'cinematic',
   };
 
   // ── Build source candidates list ────────────────────────────────────────────
   useEffect(() => {
     const cacheKey = `${reel.category}-${reel.fileName}`;
+    
+    // Use cached source if available
     if (videoSourceCache.has(cacheKey)) {
       const cached = videoSourceCache.get(cacheKey);
       setCurrentSrc(cached);
@@ -69,9 +77,18 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
       return;
     }
 
-    const folder   = categoryFolderMap[reel.category] || '';
+    const folder = categoryFolderMap[reel.category] || '';
     const baseName = reel.fileName || `reel-${reel.id}`;
-    const exts     = ['.mp4', '.webm', '.mov'];
+    
+    // Set poster image - use thumbnail if available, else create a data URL gradient
+    if (reel.thumbnail) {
+      setPosterImg(reel.thumbnail);
+    } else {
+      // Create a gradient poster placeholder
+      setPosterImg('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 568"><defs><linearGradient id="g"><stop offset="0%25" stop-color="%231a202c"/><stop offset="100%25" stop-color="%232d3748"/></linearGradient></defs><rect fill="url(%23g)" width="320" height="568"/></svg>');
+    }
+
+    const exts = ['.mp4', '.webm', '.mov'];
     const candidates = [];
 
     if (reel.video) candidates.push(reel.video);
@@ -88,34 +105,51 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
 
     setCandidates(candidates);
     setCandidateIndex(0);
-    retryRef.current = 0;
+    
+    // Initialize retry count
+    if (!failedVideoMap.has(cacheKey)) {
+      failedVideoMap.set(cacheKey, 0);
+    }
   }, [reel]);
 
-  // ── Load src when ready (hover / near-viewport / in-viewport) ───────────────
-  const loadSrc = useCallback(() => {
+  // ── Aggressive load trigger: hover, near-viewport, or in-viewport ──────────────
+  const attemptLoad = useCallback(() => {
     if (currentSrc || hasError || sourceCandidates.length === 0) return;
+    
     const cacheKey = `${reel.category}-${reel.fileName}`;
-    // Throttle: don't start a new preload if at max and not urgently needed
-    if (
-      activePreloads.size >= MAX_CONCURRENT_PRELOADS &&
-      !isInViewport &&
-      !isHovered
-    ) return;
+    
+    // Throttle preloads for Netlify bandwidth
+    if (activePreloads.size >= MAX_CONCURRENT_PRELOADS && !isInViewport && !isHovered) {
+      return;
+    }
+
     activePreloads.add(cacheKey);
+    setIsLoading(true);
+    setLoadTimeout(false);
     setCurrentSrc(sourceCandidates[0]);
+
+    // Start load timeout timer
+    loadTimeoutRef.current = setTimeout(() => {
+      setLoadTimeout(true);
+      console.warn(`Video ${cacheKey} took too long to start buffering`);
+    }, LOAD_TIMEOUT_MS);
   }, [currentSrc, hasError, sourceCandidates, reel, isInViewport, isHovered]);
 
-  // Hover → start loading immediately
+  // Hover → load immediately
   useEffect(() => {
-    if (isHovered) loadSrc();
-  }, [isHovered, loadSrc]);
+    if (isHovered) {
+      attemptLoad();
+    }
+  }, [isHovered, attemptLoad]);
 
-  // Near viewport (500 px margin) → start loading
+  // Near viewport → load soon
   useEffect(() => {
-    if (isNearViewport) loadSrc();
-  }, [isNearViewport, loadSrc]);
+    if (isNearViewport && !isLoading) {
+      attemptLoad();
+    }
+  }, [isNearViewport, isLoading, attemptLoad]);
 
-  // ── Viewport observer: play / pause + urgently load if still missing ─────────
+  // ── Viewport observer: play/pause + urgent load ───────────────────────────────
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
@@ -127,12 +161,11 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
           setIsInViewport(inView);
 
           if (inView) {
-            // Urgent load if somehow not started yet
-            if (!currentSrc && sourceCandidates.length > 0) {
-              setCurrentSrc(sourceCandidates[0]);
+            // Urgent load if not started
+            if (!currentSrc && sourceCandidates.length > 0 && !isLoading) {
+              attemptLoad();
             }
-            if (videoRef.current) {
-              videoRef.current.preload = 'auto';
+            if (videoRef.current && !videoRef.current.paused) {
               videoRef.current.play().catch(() => {});
             }
           } else {
@@ -147,9 +180,9 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
 
     observer.observe(el);
     return () => observer.unobserve(el);
-  }, [currentSrc, sourceCandidates]);
+  }, [currentSrc, sourceCandidates, isLoading, attemptLoad]);
 
-  // ── Reactively update <video preload> attribute ──────────────────────────────
+  // ── Reactively set video preload attribute ───────────────────────────────────
   useEffect(() => {
     if (!videoRef.current) return;
     if (isInViewport || isHovered) {
@@ -169,37 +202,65 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
   };
 
   const handleVideoError = () => {
-    retryRef.current += 1;
     const cacheKey = `${reel.category}-${reel.fileName}`;
+    let retryCount = failedVideoMap.get(cacheKey) || 0;
+    retryCount += 1;
+    failedVideoMap.set(cacheKey, retryCount);
 
-    if (retryRef.current > 3) {
+    console.error(`Video ${cacheKey} error (attempt ${retryCount})`);
+
+    // Clear timeout
+    if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+    setLoadTimeout(false);
+
+    // Max retries reached
+    if (retryCount > 3) {
       videoSourceCache.delete(cacheKey);
       activePreloads.delete(cacheKey);
       setHasError(true);
+      setIsLoading(false);
       return;
     }
 
+    // Try next candidate
     const nextIndex = candidateIndex + 1;
     if (sourceCandidates[nextIndex]) {
       setCandidateIndex(nextIndex);
       setCurrentSrc(sourceCandidates[nextIndex]);
     } else {
-      activePreloads.delete(cacheKey);
-      setHasError(true);
+      // All candidates failed, retry first one with exponential backoff
+      retryTimeoutRef.current = setTimeout(() => {
+        setCandidateIndex(0);
+        setCurrentSrc(sourceCandidates[0]);
+      }, RETRY_DELAY_MS * retryCount);
     }
   };
 
   const handleVideoCanPlay = () => {
+    if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+    
     setIsLoading(false);
+    setLoadTimeout(false);
+    
     const cacheKey = `${reel.category}-${reel.fileName}`;
     if (currentSrc && !videoSourceCache.has(cacheKey)) {
       videoSourceCache.set(cacheKey, currentSrc);
     }
     activePreloads.delete(cacheKey);
-    if (isInViewport && videoRef.current) {
+
+    // Auto-play if in viewport
+    if (videoRef.current && isInViewport) {
       videoRef.current.play().catch(() => {});
     }
   };
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+      if (retryTimeoutRef.current) clearTimeout(retryTimeoutRef.current);
+    };
+  }, []);
 
   const preloadAttr = isInViewport || isHovered
     ? 'auto'
@@ -218,18 +279,24 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
     >
       {/* Blur-up animated placeholder shown while video loads */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 transition-opacity duration-500 ${
-          isLoading ? 'opacity-100 animate-pulse' : 'opacity-0 pointer-events-none'
+        className={`absolute inset-0 transition-opacity duration-500 ${
+          isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
+        style={{
+          backgroundImage: posterImg ? `url(${posterImg})` : 'linear-gradient(135deg, #1a202c, #2d3748)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'blur(8px)',
+        }}
       />
 
       {!hasError && currentSrc ? (
         <video
           ref={videoRef}
-          src={currentSrc}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             isLoading ? 'opacity-0' : 'opacity-100'
           }`}
+          poster={posterImg}
           loop
           muted={isMuted}
           playsInline
@@ -237,12 +304,17 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
           onError={handleVideoError}
           onCanPlay={handleVideoCanPlay}
           onLoadedData={() => {
+            if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
             setIsLoading(false);
+            setLoadTimeout(false);
             if (videoRef.current && isInViewport) {
               videoRef.current.play().catch(() => {});
             }
           }}
-        />
+        >
+          <source src={currentSrc} type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
       ) : reel.thumbnail ? (
         <img
           src={reel.thumbnail}
@@ -251,15 +323,25 @@ const ReelCard = ({ reel, isNearViewport = false }) => {
           loading="lazy"
         />
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-900">
           <Play className="w-16 h-16 text-gray-500" />
         </div>
       )}
 
-      {/* Spinner: visible while src is set but video hasn't decoded yet */}
-      {isLoading && currentSrc && !hasError && (
+      {/* Loading spinner */}
+      {isLoading && currentSrc && !hasError && !loadTimeout && (
         <div className="absolute inset-0 flex items-center justify-center">
           <Loader2 className="w-10 h-10 text-white/60 animate-spin" />
+        </div>
+      )}
+
+      {/* Load timeout error overlay */}
+      {loadTimeout && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <div className="text-center">
+            <AlertCircle className="w-10 h-10 text-orange-400 mx-auto mb-2" />
+            <p className="text-white/80 text-xs font-medium">Still loading...</p>
+          </div>
         </div>
       )}
 
@@ -325,7 +407,7 @@ const ReelsPortfolio = () => {
     ? reelsPortfolio
     : reelsPortfolio.filter(reel => reel.category === selectedCategory);
 
-  // 500 px head-start observer — tells ReelCard to begin fetching early
+  // ── AGGRESSIVE: 800px head-start observer for Netlify CDN ──────────────────
   useEffect(() => {
     const gridContainer = document.querySelector('[data-reel-grid]');
     if (!gridContainer) return;
@@ -342,7 +424,7 @@ const ReelsPortfolio = () => {
           });
         });
       },
-      { rootMargin: '500px', threshold: 0 }
+      { rootMargin: '800px', threshold: 0 }  // ← Increased from 500px to 800px
     );
 
     const reelElements = gridContainer.querySelectorAll('[data-reel-id]');
