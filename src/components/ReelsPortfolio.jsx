@@ -7,8 +7,9 @@ const videoSourceCache = new Map();  // cacheKey → confirmed working src URL
 const activePreloads = new Set();    // cacheKeys currently being fetched
 const failedVideoMap = new Map();    // track retry attempts per video
 const MAX_CONCURRENT_PRELOADS = 1;   // Even more aggressive for Netlify
-const LOAD_TIMEOUT_MS = 4000;        // 4 second timeout before showing error
-const RETRY_DELAY_MS = 2000;         // Exponential backoff: 2s, 4s, 8s
+const LOAD_TIMEOUT_MS = 3000;        // 3 second timeout before showing error
+const RETRY_DELAY_MS = 1000;         // Exponential backoff: 1s, 2s, 3s
+const PRELOAD_MARGIN_PX = 1200;      // 1200px head start for aggressive preload
 
 // ── Network speed detection hook ──────────────────────────────────────────────
 function useNetworkStatus() {
@@ -407,7 +408,7 @@ const ReelsPortfolio = () => {
     ? reelsPortfolio
     : reelsPortfolio.filter(reel => reel.category === selectedCategory);
 
-  // ── AGGRESSIVE: 800px head-start observer for Netlify CDN ──────────────────
+  // ── AGGRESSIVE: 1200px head-start observer for Netlify CDN ──────────────────
   useEffect(() => {
     const gridContainer = document.querySelector('[data-reel-grid]');
     if (!gridContainer) return;
@@ -424,7 +425,7 @@ const ReelsPortfolio = () => {
           });
         });
       },
-      { rootMargin: '800px', threshold: 0 }  // ← Increased from 500px to 800px
+      { rootMargin: '1200px', threshold: 0 }  // ← Increased to 1200px for ultra-aggressive preload
     );
 
     const reelElements = gridContainer.querySelectorAll('[data-reel-id]');
